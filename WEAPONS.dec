@@ -1,0 +1,753 @@
+//Weapon Boilerplate
+
+ACTOR DementiaWeapon : Weapon replaces DoomWeapon
+{
+  +CHEATNOTWEAPON
+  +NOAUTOFIRE
+  +WEAPON.AMMO_OPTIONAL
+  Weapon.AmmoType2 "Elixir"
+  
+  Weapon.Kickback 100
+  Weapon.BobRangeX 0.5
+  Weapon.BobRangeY 0.125
+  Weapon.BobSpeed 3
+}
+
+//Fists
+ACTOR NuFist : DementiaWeapon replaces Fist
+{
+  Game Doom
+  Weapon.AmmoType1 "Stamina"
+  Weapon.AmmoType2 "Stamina" //overrides boilerplate
+  Weapon.SelectionOrder 3700
+  Weapon.Kickback 100
+  Weapon.SlotNumber 1
+  Inventory.PickupMessage "You somehow... Picked up your own fists?"
+  +WEAPON.MELEEWEAPON
+  Obituary "%o was bruised by %k."
+  States
+  {
+  Spawn:
+    FIST A -1
+    Loop
+	Deselect:
+		PNCH A 0 A_Lower
+		PNCH A 0 A_Lower
+		PNCH A 0 A_Lower
+		PNCH A 1 A_Lower
+		Loop
+	Select:
+		PNCH A 0 A_Raise
+		PNCH A 1 A_Raise
+		Loop
+  Ready:
+    PNCH A 0 A_JumpIfInventory("StamGen",5,3)
+    PNCH A 0 A_GiveInventory("StamGen",2)
+    PNCH A 1 a_weaponready
+    loop
+    PNCH A 0 A_TakeInventory("StamGen",5)
+    PNCH A 0 A_JumpIfInventory("Stamina",99,2)
+    PNCH A 0 A_GiveInventory("Stamina",2)
+    PNCH A 1 a_weaponready	
+    loop   
+  Fire:
+    PNCH A 0 A_JumpIfInventory("Stamina",5,1)
+    goto Ready
+    PNCH A 0 A_JumpIfInventory("FistToken",1,"OtherFire")
+    PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH B 0 A_Playsound("fist/swing")
+	PNCH B 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH B 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH C 0 A_Punch
+	PNCH C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH D 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH D 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 0 A_GiveInventory("FistToken",1)
+	PNCH A 0 A_TakeInventory("Stamina",3)
+	PNCH A 0 A_ReFire
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    goto Ready
+  OtherFire:
+    PNCH A 0 A_JumpIfInventory("Stamina",5,1)
+    goto Ready
+    PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH E 0 A_Playsound("fist/swing")
+	PNCH E 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH E 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH F 0 A_Punch
+	PNCH F 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH F 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH G 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH G 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 0 A_TakeInventory("FistToken",1)
+	PNCH A 0 A_TakeInventory("Stamina",3)
+	PNCH A 0 A_ReFire
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    goto Ready
+  }
+}
+
+actor Stamina : Ammo
+{
+	Inventory.Icon FISTP0
+	Inventory.MaxAmount 99
+}
+
+actor StamGen: Ammo 
+{
+	Inventory.MaxAmount 5
+}
+
+//Pistol
+ACTOR NuPistol : DementiaWeapon replaces Pistol
+{
+  Weapon.AmmoType1 "PistolLoad"
+  Weapon.AmmoUse1 1
+  Weapon.AmmoGive2 12
+  Obituary "Some dumbass got shot dead by a pistol wtf"
+  Inventory.Pickupmessage "Picked up a pistol."
+  Tag "Ol' Reliable"
+  States
+  {
+  Ready:
+	PISG A 0 A_JumpIfNoAmmo("Reload")
+    PISG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Deselect:
+    PISG A 0 A_Lower
+    PISG A 0 A_Lower
+    PISG A 1 A_Lower
+    Loop
+  Select:
+    PISG A 0 A_Raise
+    PISG A 0 A_Raise
+    PISG A 1 A_Raise
+    Loop
+  Fire:
+	PISG A 0 A_JumpIfNoAmmo("Reload")
+    PISG A 0 A_PlayWeaponSound("RIFLFIRE")
+    PISG A 0 A_GunFlash
+    PISG A 0 A_FireBullets(4,4,1,5,"BulletPuff",1)
+	PISG A 0 A_SpawnItemEx("PistolaCasing",12,-20,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+    PISG BCDBA 2
+    Goto Ready+1
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("PistolLoad", 12, 2)
+	TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	TNT1 A 0
+	Goto Ready+1
+  ActualReload:
+	PRLT AB 2
+	TNT1 A 0 A_PlaySound("PTCLIPOU")
+	PISR ABCDEF 1
+	PISR G 4
+	TNT1 A 0 A_PlaySound("PTCLIPIN")
+	PISR HIJKLMN 2
+	Goto ReloadLoop
+  ReloadLoop:
+    TNT1 A 0 A_TakeInventory("Elixir", 1)
+    TNT1 A 0 A_GiveInventory("PistolLoad", 1)
+    TNT1 A 0 A_JumpIfInventory("PistolLoad", 12, "ReloadFinish")
+    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+    Goto ReloadFinish 
+  ReloadFinish:
+	PRLT BA 1
+	goto Ready+1
+  Flash:
+    PISF A 1 Bright A_Light1
+    Goto LightDone
+    PISF A 1 Bright A_Light1
+    Goto LightDone
+  Spawn:
+    PIST A -1
+    Stop
+  }
+}
+
+Actor PistolLoad : Ammo
+{
+	Inventory.MaxAmount 12
+}
+
+//scattershot
+ACTOR ScatterShot : DementiaWeapon replaces Shotgun
+{
+  Weapon.AmmoType1 "ScattershotLoad"
+  Weapon.AmmoUse1 1
+  Weapon.AmmoGive2 24
+  Inventory.PickupMessage "Picked up the shotscatter. Double barrel pump shotgun fun!"
+  Weapon.SlotNumber 3
+  Obituary "%o was executed by %k's shotscatter."
+  Decal "BulletChip"
+  Tag "Shotscatter"
+  States
+  {
+  Ready:
+	SSHT A 0 A_JumpIfNoAmmo("Reload")
+    SSHT A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Deselect:
+	SSHT A 0 A_Lower
+	SSHT A 0 A_Lower
+    SSHT A 1 A_Lower
+    Loop
+  Select:
+	SSHT A 0 A_Raise
+	SSHT A 0 A_Raise
+    SSHT A 1 A_Raise
+    Loop
+  Fire:
+	SSHT A 0 A_JumpIfNoAmmo("Reload")
+    SSHT A 3
+    SSHT A 0 A_FireBullets(12.6,6.3,10,7,"BulletPuff")
+    SSHT A 0 A_PlayWeaponSound("weapons/tacticalshotgun")
+    SSHT A 5 A_GunFlash
+	SSHT BCD 4
+	SSHT A 0 A_PlayWeaponSound("weapons/tacticalpump")
+	SSHT A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+	SSHT CBA 4 
+    SSHT A 3
+    Goto Ready+1
+  Reload:
+	SSHT A 0 A_JumpIfInventory("ScattershotLoad", 12, 2)
+	SSHT A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	SSHT A 0
+	Goto Ready+1
+  ActualReload:
+	SRLT AB 3
+	TNT1 A 0 A_PlaySound("PTCLIPOU")
+	SSRL ABCDEF 2
+	SSRL F 6
+	TNT1 A 0 A_PlaySound("PTCLIPIN")
+	Goto ReloadLoop
+  ReloadLoop:
+    TNT1 A 0 A_TakeInventory("Elixir", 1)
+    TNT1 A 0 A_GiveInventory("ScattershotLoad", 1)
+    TNT1 A 0 A_JumpIfInventory("ScattershotLoad", 12, "ReloadFinish")
+    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+    Goto ReloadFinish 
+  ReloadFinish:
+	SSRL FEDCBA 2
+	SRLT BA 3
+	goto Ready+1
+  Flash:
+    SSHF AB 2 Bright A_Light1
+    TNT1 A 3 Bright A_Light2
+    Goto LightDone
+  Spawn:
+    SSTP A -1
+    Stop
+  }
+}
+
+Actor ScattershotLoad : Ammo
+{
+	Inventory.MaxAmount 12
+}
+
+//shotscatter
+ACTOR ShotScatter : DementiaWeapon replaces SuperShotgun
+{
+  Weapon.AmmoType1 "ShotscatterLoad"
+  Weapon.AmmoUse1 2
+  Weapon.AmmoGive2 24
+  Inventory.PickupMessage "Picked up the shotscatter. Double barrel pump shotgun fun!"
+  Weapon.SlotNumber 3
+  Obituary "%o was executed by %k's shotscatter."
+  Decal "BulletChip"
+  Tag "Shotscatter"
+  States
+  {
+  Ready:
+	TACT A 0 A_JumpIfNoAmmo("Reload")
+    TACT A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Deselect:
+	TACT A 0 A_Lower
+	TACT A 0 A_Lower
+    TACT A 1 A_Lower
+    Loop
+  Select:
+	TACT A 0 A_Raise
+	TACT A 0 A_Raise
+    TACT A 1 A_Raise
+    Loop
+  Fire:
+	TACT A 0 A_JumpIfNoAmmo("Reload")
+    TACT A 3
+    TACT A 0 A_FireBullets(12.6,6.3,20,7,"BulletPuff")
+    TACT A 0 A_PlayWeaponSound("weapons/tacticalshotgun")
+    TACT A 2 A_GunFlash
+	TACT H 3
+	TACT I 2
+	TACT A 7
+    TACT B 3
+	TACT C 4 A_PlayWeaponSound("weapons/tacticalpump")
+    TACT D 5 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+    TACT C 5
+	TACT E 4
+	TACT F 3 A_PlayWeaponSound("weapons/tacticalpump")
+	TACT G 4 A_SpawnItemEx("ShotgunCasing",12,-12,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+    TACT F 5
+	TACT E 4
+    TACT A 3
+    Goto Ready+1
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("ShotscatterLoad", 24, 2)
+	TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	TNT1 A 0
+	Goto Ready+1
+  ActualReload:
+	TRLT AB 3
+	TNT1 A 0 A_PlaySound("PTCLIPOU")
+	TCRL ABCDEF 2
+	TCRL F 6
+	TNT1 A 0 A_PlaySound("PTCLIPIN")
+	Goto ReloadLoop
+  ReloadLoop:
+    TNT1 A 0 A_TakeInventory("Elixir", 1)
+    TNT1 A 0 A_GiveInventory("ShotscatterLoad", 1)
+    TNT1 A 0 A_JumpIfInventory("ShotscatterLoad", 24, "ReloadFinish")
+    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+    Goto ReloadFinish 
+  ReloadFinish:
+	TCRL FEDCBA 2
+	TRLT BA 3
+	goto Ready+1
+  Flash:
+    TACF A 2 Bright A_Light1
+    TACF B 3 Bright A_Light2
+    Goto LightDone
+  Spawn:
+    TSHT A -1
+    Stop
+  }
+}
+
+Actor ShotscatterLoad : Ammo
+{
+	Inventory.MaxAmount 24
+}
+
+//scatscatter
+ACTOR ScatScatter : DementiaWeapon replaces Chainsaw
+{
+  Weapon.AmmoType1 "ScatscatterLoad"
+  Weapon.AmmoUse1 3
+  Weapon.AmmoGive2 36
+  Inventory.PickupMessage "Picked up the scatscatter. Pure shotgun badassery!"
+  Weapon.SlotNumber 3
+  Obituary "%o was executed by %k's shotscatter."
+  Decal "BulletChip"
+  Tag "Shotscatter"
+  States
+  {
+  Ready:
+	SSTG A 0 A_JumpIfNoAmmo("Reload")
+    SSTG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Deselect:
+	SSTG A 0 A_Lower
+	SSTG A 0 A_Lower
+    SSTG A 1 A_Lower
+    Loop
+  Select:
+	SSTG A 0 A_Raise
+	SSTG A 0 A_Raise
+    SSTG A 1 A_Raise
+    Loop
+  Fire:
+	SSTG A 0 A_JumpIfNoAmmo("Reload")
+    SSTG A 0 A_FireBullets(12.6,6.3,30,7,"BulletPuff")
+    SSTG A 0 A_PlayWeaponSound("weapons/tacticalshotgun")
+	SSTG A 16 A_GunFlash
+	SSTG A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/tacticalpump")
+	TNT1 A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+	SSTG B 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/tacticalpump")
+	TNT1 A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+	SSTG C 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/tacticalpump")
+	TNT1 A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+	SSTG D 8
+	SSTG A 6
+    Goto Ready+1
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("ScatscatterLoad", 36, 2)
+	TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	TNT1 A 0
+	Goto Ready+1
+  ActualReload:
+	SSTG DCBA 3
+	TNT1 A 0 A_PlaySound("PTCLIPOU")
+	STRL ABCDEF 2
+	STRL F 6
+	TNT1 A 0 A_PlaySound("PTCLIPIN")
+	Goto ReloadLoop
+  ReloadLoop:
+    TNT1 A 0 A_TakeInventory("Elixir", 1)
+    TNT1 A 0 A_GiveInventory("ScatscatterLoad", 1)
+    TNT1 A 0 A_JumpIfInventory("ScatscatterLoad", 36, "ReloadFinish")
+    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+    Goto ReloadFinish 
+  ReloadFinish:
+	STRL FEDCBA 2
+	SSTG ABCD 3
+	goto Ready+1
+  Flash:
+    SSTF A 2 Bright A_Light1
+    Goto LightDone
+  Spawn:
+    SHIP A -1
+    Stop
+  }
+}
+
+Actor ScatscatterLoad : Ammo
+{
+	Inventory.MaxAmount 36
+}
+
+//sexual assault rifle
+ACTOR SexualAssaultRifle : DementiaWeapon replaces Chaingun
+{
+   Weapon.AmmoType1 "SARifleLoad"
+   Weapon.AmmoUse1 1
+   Weapon.AmmoGive2 40
+   Decal "BulletChip"
+   Weapon.Slotnumber 4
+   Inventory.PickupMessage "Picked up the Sexual Assault Rifle! Barnaby Joyce ate my son." // "You got the chaingun"
+   Obituary "%o read about the 2018 Barnaby Joyce-Catherine Marriott allegations." // "%o was mowed down by %k's chaingun."
+   Tag "Sexual Assault Rifle"
+   States
+   {
+   Ready:
+	 SARH A 0 A_JumpIfNoAmmo("Reload")
+     SARH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+     Loop
+   Deselect:
+     SARH A 0 A_Lower
+     SARH A 0 A_Lower
+     SARH A 1 A_Lower
+     Loop
+   Select:
+     SARH A 0 A_Raise
+     SARH A 0 A_Raise
+     SARH A 1 A_Raise
+     Loop
+   Fire:
+     SARH A 0 A_JumpIfNoAmmo("Reload")
+     SARH A 0 A_PlayWeaponSound("RIFLFIRE")
+     SARH A 0 A_GunFlash
+     SARH A 0 A_FireBullets(4,4,1,5,"BulletPuff",1)
+     SARF A 2 Offset(0, 36)
+	 SARF B 2 Offset(0, 40)
+	 SARH A 0 A_SpawnItemEx("RifleCasing",12,-20,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+     SARH A 0 A_ReFire
+     Goto Ready
+   Flash:
+     TNT1 AA 2 Bright A_Light1
+     Goto LightDone
+     TNT1 AA 2 Bright A_Light1
+     Goto LightDone
+   Spawn:
+     SARP A -1
+     Stop
+   Reload:
+ 	 TNT1 A 0 A_JumpIfInventory("SARifleLoad", 40, 2)
+	 TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	 TNT1 A 0
+	 Goto Ready+1
+   ActualReload:
+	 SARH A 1
+	 TNT1 A 0 A_PlaySound("PTCLIPOU")
+	 SARR AB 6
+	 SARR B 2 Offset(0, 40)
+	 SARR B 2 Offset(0, 48)
+	 SARR B 2 Offset(0, 56)
+	 SARR B 6
+	 TNT1 A 0 A_PlaySound("PTCLIPIN")
+	Goto ReloadLoop
+   ReloadLoop:
+     TNT1 A 0 A_TakeInventory("Elixir", 1)
+     TNT1 A 0 A_GiveInventory("SARifleLoad", 1)
+     TNT1 A 0 A_JumpIfInventory("SARifleLoad", 40, "ReloadFinish")
+     TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+     Goto ReloadFinish 
+   ReloadFinish:
+	 SARR C 2 Offset(0, 56)
+	 SARR C 2 Offset(0, 48)
+	 SARR C 2 Offset(0, 40)
+	 SARR CA 6
+	 SARH A 3
+	 goto Ready+1
+   }
+}
+
+Actor SARifleLoad : Ammo
+{
+	Inventory.MaxAmount 40
+}
+
+//staatlauncher
+actor StaatLauncher : DementiaWeapon replaces RocketLauncher
+{
+  radius 20 
+  height 16
+  Weapon.AmmoUse1 1
+  Weapon.AmmoUse2 1
+  Weapon.AmmoGive2 1
+  Weapon.AmmoType "StaatLoad"
+  inventory.pickupmessage "Picked up a relic from a forgotten past..."
+  Weapon.SlotNumber 5
+  Weapon.SlotPriority 1
+  states
+  {
+  Spawn:
+    STLP A -1
+    stop
+  Ready:
+	STLA A 0 A_JumpIfNoAmmo("Reload")
+    STLA A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    loop
+  Deselect:
+    STLA A 0 A_Lower
+    STLA A 0 A_Lower
+    STLA A 1 A_Lower
+    loop
+  Select:
+    STLA A 0 A_Raise
+    STLA A 0 A_Raise
+    STLA A 1 A_Raise
+    loop
+  Fire:
+	STLA A 0 A_JumpIfNoAmmo("Reload")
+    STLA A 3 
+    STLF A 2
+    STLF A 2
+    STLF B 0 A_PlaySound("MISLAUNC")
+	STLF B 4 A_FireCustomMissile("StaatcubeExplosive")
+    STLF C 2 
+    STLA A 2 
+    STLA A 4  
+    goto Ready+1
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("StaatLoad", 1, 2)
+	TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	TNT1 A 0
+	Goto Ready+1
+  ActualReload:
+	SLRL A 1
+	TNT1 A 0 A_PlaySound("PTCLIPOU")
+	SLRL ABCDEF 2
+	SLRL F 6
+	TNT1 A 0 A_PlaySound("PTCLIPIN")
+	Goto ReloadLoop
+  ReloadLoop:
+    TNT1 A 0 A_TakeInventory("Elixir", 1)
+    TNT1 A 0 A_GiveInventory("StaatLoad", 1)
+    TNT1 A 0 A_JumpIfInventory("StaatLoad", 1, "ReloadFinish")
+    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+    Goto ReloadFinish 
+  ReloadFinish:
+	SLRL FEDCBA 2
+	STLA A 3
+	goto Ready+1
+  }
+}
+
+Actor StaatLoad : Ammo
+{
+	Inventory.MaxAmount 1
+}
+
+//astrothunder
+ACTOR Astrothunder : DementiaWeapon replaces PlasmaRifle
+{
+  Weapon.Slotnumber 6
+  Weapon.AmmoUse 1
+  Weapon.AmmoGive2 50
+  Weapon.AmmoType "AstroLoad"
+  decal "PlasmaScorchLower1"
+  AttackSound "LStart"
+  Inventory.PickupMessage "You got the Astrothunder! Infiltrate they enemy, move in on 'em randomly!"
+  Tag "Thunderbolt"
+  States
+  {
+  Ready:
+	ASTL A 0 A_JumpIfNoAmmo("Reload")
+    ASTL A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Deselect:
+    ASTL A 0 A_Lower
+    ASTL A 0 A_Lower
+    ASTL A 1 A_Lower
+    Loop
+  Select:
+    ASTL A 0 A_Raise
+    ASTL A 0 A_Raise
+    ASTL A 1 A_Raise
+    Loop
+  Fire:
+	ASTL A 0 A_JumpIfNoAmmo("Reload")
+    ASTL A 2 offset(0, 0) BRIGHT A_GunFlash
+	ASTL A 1 offset(0, 40) BRIGHT A_RailAttack(25, 0, 1, "None", "Yellow", RGF_FULLBRIGHT, 10, "LightninPuff",0,0,8192,5)
+	ASTL A 1 offset(0, 48) BRIGHT A_RailAttack(26, 0, 0, "None", "Yellow", RGF_SILENT|RGF_FULLBRIGHT, 10, "LightninPuff",0,0,8192,5)
+	ASTL A 3 offset(0, 36)  
+	ASTL A 1 offset(0, 0)
+	ASTL A 0 A_Refire
+	ASTL BCBA 3 A_SpawnItemEx("AreYaSmokinYet",12,-20,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
+    Goto Ready
+  Flash:
+    ASTF AB 2 Bright A_Light1
+    Goto LightDone
+    ASTF AB 2 Bright A_Light1
+    Goto LightDone
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("AstroLoad", 50, 2)
+	TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	TNT1 A 0
+	Goto Ready+1
+  ActualReload:
+	ASTL A 2 Offset(0, 40)
+	ASTL B 2 Offset(0, 44)
+	ASTL C 2 Offset(0, 48)
+	TNT1 A 0 A_PlaySound("PTCLIPOU")
+	ASTL C 3 Offset(8, 48)
+	ASTL C 3 Offset(4, 48)
+	ASTL C 3 Offset(0, 48)
+	ASTL C 3 Offset(-8, 48)
+	ASTL C 12 Offset(0, 48)
+	TNT1 A 0 A_PlaySound("PTCLIPIN")
+	Goto ReloadLoop
+  ReloadLoop:
+    TNT1 A 0 A_TakeInventory("Elixir", 1)
+    TNT1 A 0 A_GiveInventory("AstroLoad", 1)
+    TNT1 A 0 A_JumpIfInventory("AstroLoad", 50, "ReloadFinish")
+    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+    Goto ReloadFinish 
+  ReloadFinish:
+	ASTL C 2 Offset(0, 48)
+	ASTL C 2 Offset(0, 44)
+	ASTL C 2 Offset(0, 40)
+	ASTL CBA 3 Offset(0, 0)
+	goto Ready+1
+  Spawn:
+    ASTS A -1
+    Stop
+  }
+}
+
+Actor AstroLoad : Ammo
+{
+	Inventory.MaxAmount 50
+}
+
+//fuckyou
+ACTOR Fuck : DementiaWeapon Replaces BFG9000
+{
+  Weapon.AmmoUse1 1
+  Weapon.AmmoGive2 200
+  Weapon.AmmoType1 "Rage"
+  +WEAPON.NOAUTOFIRE
+  Inventory.PickupMessage "You feel rage coursing through your entire body..."
+  Inventory.PickupSound "misc/p_pkup"
+  Tag "The Power of Rage"
+  Weapon.SlotNumber 7
+  States
+  {
+  Ready:
+    FUKK A 0 A_JumpIfNoAmmo("Reload")
+    FUKK A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Ready2:
+    FUKK A 0 A_JumpIfNoAmmo("Reload")
+    FUKK A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+    Loop
+  Deselect:
+    FUKK A 0 A_TakeInventory("FuckEverybodyAndEverything", 2)
+    FUKK A 0 A_Lower
+    FUKK A 0 A_Lower
+    FUKK A 1 A_Lower
+    Goto Deselect+1
+  Select:
+    FUKK A 0 A_Raise
+    FUKK A 0 A_Raise
+    FUKK A 1 A_Raise
+    Loop
+  Fire:
+	FUKK A 0 A_JumpIfInventory("FuckEverybodyAndEverything",2,"FirePrepared")
+	FUKK A 0 A_JumpIfInventory("FuckEverybodyAndEverything",1,"SecondPhase")
+	FUKK A 0 A_PlaySound("weapons/fuckyouwarn", 255, 125)
+	FUKK A 0 A_PlayWeaponSound("KNCKL")
+	FUKK A 0 A_Print("Anger builds up inside of you...")
+	PHS1 ABCDEFG 2 
+	FUCK A 0 A_GiveInventory("FuckEverybodyAndEverything", 1)
+	FUKK CBA 3
+	FUKK A 10
+  Goto Ready2
+  SecondPhase:
+	FUKK A 0 A_PlaySound("weapons/fuckyouwarn", 255, 255)
+	FUKK A 0 A_PlayWeaponSound("KNCKL")
+	FUKK A 0 A_Print("You need to shout...!")
+	PHS2 ABCDEFG 2 
+	FUCK A 0 A_GiveInventory("FuckEverybodyAndEverything", 1)
+	FUKK CBA 3
+	FUKK A 10
+  Goto Ready2
+  FirePrepared:  
+	TNT1 A 0 A_TakeInventory("FuckEverybodyAndEverything")
+	FUKK ABC 3
+	FUCK ABC 3
+	TNT1 A 0 A_PlayWeaponSound("weapons/FUCKYOU")
+	FUCK C 20
+	FUCK DEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDE 3 A_FireCustomMissile("FuckMissile",random(16,-16),1,random(20,-20),random(5,-5),0,random(20,-5))
+	FUCK CBA 3
+	FUKK CBA 3
+    Goto Ready
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("Rage", 50, 2)
+	TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
+	TNT1 A 0
+	Goto Ready+1
+  ActualReload:
+    PHS1 A 2
+	PHS1 BC 2 
+    PHS1 D 0 A_PlayWeaponSound("KNCKL")
+	PHS1 DEFG 2
+	Goto ReloadLoop
+  ReloadLoop:
+    TNT1 A 0 A_TakeInventory("Elixir", 1)
+    TNT1 A 0 A_GiveInventory("Rage", 1)
+    TNT1 A 0 A_JumpIfInventory("Rage", 50, "ReloadFinish")
+    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+    Goto ReloadFinish 
+  ReloadFinish:
+    PHS2 A 2
+	PHS2 BC 2 
+    PHS2 D 0 A_PlayWeaponSound("KNCKL")
+	PHS2 DEFG 2 
+	goto Ready+1
+  Spawn:
+    FUHK ABC 3
+    Loop
+  }
+}
+
+ACTOR FuckEverybodyAndEverything : Inventory
+{
+	Inventory.Amount 2
+	Inventory.MaxAmount 2
+}
+
+Actor Rage : Ammo
+{
+	Inventory.MaxAmount 50
+    Inventory.Icon ELIXA0
+}

@@ -1,0 +1,47 @@
+PTCLIPIN PTCLIPIN
+PTCLIPOU PTCLIPOU
+
+KNCKL KNCKL
+
+RIFLFIRE RIFLFIRE
+
+weapons/tacticalshotgun	TACTICAL
+weapons/tacticalpump	TACTPUMP
+
+weapons/fuckyouwarn	FUCKWARN
+weapons/FUCKYOU	FUCKYOU
+
+kamikazi/scream		DSKAMAAH
+kamikazi/idle		DSKAMIDL
+
+$RANDOM weapons/d3plasmaf { weapons/d3plasma1 weapons/d3plasma2 weapons/d3plasma3 }
+weapons/d3plasma1 DSD3PS1
+weapons/d3plasma2 DSD3PS2
+weapons/d3plasma3 DSD3PS3
+
+$RANDOM weapons/d3plasmax { weapons/d3plasmax1 weapons/d3plasmax2 weapons/d3plasmax3 }
+weapons/d3plasmax1 DSD3PH1
+weapons/d3plasmax2 DSD3PH2
+weapons/d3plasmax3 DSD3PH3
+
+$random puff/ric 		{ puff/ric1 puff/ric2 puff/ric3 puff/ric4 puff/ric5 puff/ric6 puff/ric7 }
+puff/ric1 			dsrich1
+puff/ric2 			dsrich2
+puff/ric3 			dsrich3
+puff/ric4 			dsrich4
+puff/ric5 			dsrich5
+puff/ric6 			dsrich6
+puff/ric7 			dsrich7
+
+$random puff/rico    {puff/rico1 puff/rico2 puff/rico3 puff/rico4 puff/rico5}
+puff/rico1               dsric1
+puff/rico2               dsric2
+puff/rico3               dsric3
+puff/rico4               dsric4
+puff/rico5               dsric5
+
+flier/explosion EXPLOSIO
+lizard/laser    GBLASR01
+flyer/flying	COMMSP
+
+OPEN opening

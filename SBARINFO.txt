@@ -1,0 +1,28 @@
+base Doom;
+
+height 0;
+resolution 320, 240;
+
+statusbar inventory { }
+statusbar fullscreen, fullscreenoffsets { }
+statusbar inventoryfullscreen, fullscreenoffsets { }
+
+statusbar normal, forcescaled
+{
+	drawimage "STFBG", -51, 2;
+	drawimage ammoicon2, 8, 16;
+	drawnumber 2147483647, DBIGFONT, Red, ammo1, 48, 11;
+
+	drawnumber 2147483647, INDEXFONT, Purple, ammo("Elixir"), 14, 28;
+	drawnumber 2147483647, INDEXFONT, Red, Health, 31, 28;
+	drawnumber 2147483647, INDEXFONT, Blue, Armor, 47, 28;
+	
+	drawswitchableimage keyslot 2 && 5, "nullimage", "STKEYS0", "STKEYS3", "STKEYS6", 8, 37;
+	drawswitchableimage keyslot 3 && 6, "nullimage", "STKEYS1", "STKEYS4", "STKEYS7", 22, 37;
+	drawswitchableimage keyslot 1 && 4, "nullimage", "STKEYS2", "STKEYS5", "STKEYS8", 35, 37;
+
+	drawselectedinventory alternateonempty, INDEXFONT, 0, 0
+	{
+		drawmugshot "STF", 5, -44, 8;
+	}
+}
