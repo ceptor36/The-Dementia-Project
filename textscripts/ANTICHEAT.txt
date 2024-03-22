@@ -1,0 +1,16 @@
+#include "zcommon.acs"
+
+//script that sets off everything in motion
+script 587 ENTER
+{
+	WHILE (1)
+	{
+		if (CheckInventory("YourSinsRevealed") == 1) 
+		{
+			Thing_ChangeTid(0,1488);
+			MorphActor(1488, "CheatingPlayer", "", 1048576, 0, "", "");
+		}
+		Delay(1);
+		restart;	
+	}
+}
