@@ -1,0 +1,170 @@
+//Elixir Ammo and it's stuff
+
+Actor Elixir : Ammo
+{
+  Inventory.PickupSound "misc/pickup"
+  Inventory.Amount 1
+  Inventory.MaxAmount 999
+  Ammo.BackpackAmount 10
+  Ammo.BackpackMaxAmount 999
+  Inventory.PickupMessage "Elixir-based pickup"
+  Inventory.Icon ELIXA0
+  States
+  {
+  Spawn:
+    BALL A -1
+    Loop
+  }
+}
+
+ACTOR FreakyClip : Elixir Replaces Clip
+{
+	inventory.amount 5
+	Inventory.PickupMessage "freaky clip"
+	states
+	{
+	spawn:
+		CLIP A 1 a_setscale(0.4,0.5)
+		CLIP A 1 a_setscale(0.45,0.45)
+		CLIP A 1 a_setscale(0.5,0.4)
+		CLIP A 1 a_setscale(0.45,0.45)
+		CLIP A 1 a_setscale(0.4,0.5)
+		CLIP A 1 a_setscale(0.35,0.55)
+		CLIP A 1 a_setscale(0.3,0.6)
+		CLIP A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}
+
+ACTOR FreakyAmmoBox : Elixir Replaces ClipBox
+{
+	inventory.amount 25
+	Inventory.PickupMessage "freaky ammo box"
+	states
+	{
+	spawn:
+		AMMO A 1 a_setscale(0.4,0.5)
+		AMMO A 1 a_setscale(0.45,0.45)
+		AMMO A 1 a_setscale(0.5,0.4)
+		AMMO A 1 a_setscale(0.45,0.45)
+		AMMO A 1 a_setscale(0.4,0.5)
+		AMMO A 1 a_setscale(0.35,0.55)
+		AMMO A 1 a_setscale(0.3,0.6)
+		AMMO A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}
+
+ACTOR FreakyShell : Elixir Replaces Shell
+{
+	inventory.amount 4
+	Inventory.PickupMessage "freaky shells"
+	states
+	{
+	spawn:
+		SHEL A 1 a_setscale(0.4,0.5)
+		SHEL A 1 a_setscale(0.45,0.45)
+		SHEL A 1 a_setscale(0.5,0.4)
+		SHEL A 1 a_setscale(0.45,0.45)
+		SHEL A 1 a_setscale(0.4,0.5)
+		SHEL A 1 a_setscale(0.35,0.55)
+		SHEL A 1 a_setscale(0.3,0.6)
+		SHEL A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}
+
+ACTOR FreakyShellBox : Elixir Replaces ShellBox
+{
+	inventory.amount 24
+	Inventory.PickupMessage "freaky shell box"
+	states
+	{
+	spawn:
+		SBOX A 1 a_setscale(0.4,0.5)
+		SBOX A 1 a_setscale(0.45,0.45)
+		SBOX A 1 a_setscale(0.5,0.4)
+		SBOX A 1 a_setscale(0.45,0.45)
+		SBOX A 1 a_setscale(0.4,0.5)
+		SBOX A 1 a_setscale(0.35,0.55)
+		SBOX A 1 a_setscale(0.3,0.6)
+		SBOX A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}
+
+ACTOR FreakyRocket : Elixir Replaces RocketAmmo
+{
+	inventory.amount 1
+	Inventory.PickupMessage "freaky rocket"
+	states
+	{
+	spawn:
+		ROCK A 1 a_setscale(0.4,0.5)
+		ROCK A 1 a_setscale(0.45,0.45)
+		ROCK A 1 a_setscale(0.5,0.4)
+		ROCK A 1 a_setscale(0.45,0.45)
+		ROCK A 1 a_setscale(0.4,0.5)
+		ROCK A 1 a_setscale(0.35,0.55)
+		ROCK A 1 a_setscale(0.3,0.6)
+		ROCK A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}
+
+ACTOR FreakyRocketBox : Elixir Replaces RocketBox
+{
+	inventory.amount 10
+	Inventory.PickupMessage "freaky rocket box"
+	states
+	{
+	spawn:
+		BROK A 1 a_setscale(0.4,0.5)
+		BROK A 1 a_setscale(0.45,0.45)
+		BROK A 1 a_setscale(0.5,0.4)
+		BROK A 1 a_setscale(0.45,0.45)
+		BROK A 1 a_setscale(0.4,0.5)
+		BROK A 1 a_setscale(0.35,0.55)
+		BROK A 1 a_setscale(0.3,0.6)
+		BROK A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}
+
+ACTOR FreakyCell : Elixir Replaces Cell
+{
+	inventory.amount 25
+	Inventory.PickupMessage "freaky cell"
+	states
+	{
+	spawn:
+		CELL A 1 a_setscale(0.4,0.5)
+		CELL A 1 a_setscale(0.45,0.45)
+		CELL A 1 a_setscale(0.5,0.4)
+		CELL A 1 a_setscale(0.45,0.45)
+		CELL A 1 a_setscale(0.4,0.5)
+		CELL A 1 a_setscale(0.35,0.55)
+		CELL A 1 a_setscale(0.3,0.6)
+		CELL A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}
+
+ACTOR FreakyLargeCell : Elixir Replaces CellPack
+{
+	inventory.amount 35
+	Inventory.PickupMessage "freaky large cell"
+	states
+	{
+	spawn:
+		CELP A 1 a_setscale(0.4,0.5)
+		CELP A 1 a_setscale(0.45,0.45)
+		CELP A 1 a_setscale(0.5,0.4)
+		CELP A 1 a_setscale(0.45,0.45)
+		CELP A 1 a_setscale(0.4,0.5)
+		CELP A 1 a_setscale(0.35,0.55)
+		CELP A 1 a_setscale(0.3,0.6)
+		CELP A 1 a_setscale(0.35,0.55)
+		loop
+	}
+}

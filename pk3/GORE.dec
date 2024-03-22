@@ -1,0 +1,563 @@
+//hey dude you like gore? no? fine, fuck you then
+
+Actor BloodSpawn
+{
+speed 8
+mass 20
++NOGRAVITY
+-SOLID
++NOBLOCKMAP
++RIPPER
++MISSILE
++CLIENTSIDEONLY
++NOTELEPORT
++NOBLOCKMAP
++BLOODLESSIMPACT 
++FORCEXYBILLBOARD
++NODAMAGETHRUST
+Seesound "GIBS2"
+deathsound "GIBS2"
+//scale defult at .4
+scale 1
+    States
+	{
+    Spawn:
+       KMBL ABCD 2
+	   Loop
+	 Death:
+	 BLU1 ABCDE 2
+	 BLU1 F -1
+	 //defult no -1 f is included in first chain
+	 stop
+}
+}
+
+//-------------Shadow Warrior Blood for hitskans------------------------------//
+Actor SpadowWarriorBlood replaces Blood
+{
+	+NOBLOCKMAP
+	+NOTELEPORT
+	-NOGRAVITY
+	-ALLOWPARTICLES
+	+NOTELEPORT
+	+CLIENTSIDEONLY	
+	scale 1 //default 0.4
+	VSpeed 0
+	Speed 0
+	States
+	{
+    Spawn:
+	   KMBL A 2
+	   NULL A 0 A_CustomMissile("DropBlood", 0, 0, random(115,135), 2, random(5,10))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(70,90), 2, random(5,10))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(25,45), 2, random(5,10))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(250,270), 2, random(345,350))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(295,315), 2, random(345,350))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(340,360), 2, random(345,350))
+	   NULL A 0 A_CustomMissile("DropBlood", 0, 0, random(115,135), 2, random(5,10))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(70,90), 2, random(5,10))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(25,45), 2, random(5,10))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(250,270), 2, random(345,350))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(295,315), 2, random(345,350))
+	   NULL A 0 A_CustomMissile ("DropBlood", 0, 0, random(340,360), 2, random(345,350))
+	   KMBL BCS 2
+	   Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//----------------------Hits Drop Blood---------------------------------------//
+ACTOR DropBlood
+{
+	Radius 0
+	height 0
+	Speed 5
+	scale 0.5 //default 0.2
+	Projectile
+	-NOGRAVITY
+	-SOLID
+	+CLIENTSIDEONLY
+	Gravity 0.25
+	States
+	{
+	Spawn:
+		KMBL ABCD 1
+	    Loop
+	Death:
+	   BLU1 ABCDEF 2
+	   Stop
+	XDeath:
+	   NULL A 1 
+	   Stop
+	}
+}
+//----------------------------------------------------------------------------//
+//----------------------Hits Drop Blood---------------------------------------//
+ACTOR DropBloodForGibs
+{
+	Radius 0
+	height 0
+	Speed 5
+	scale 0.2
+	Projectile
+	+NOGRAVITY
+	-SOLID
+	+CLIENTSIDEONLY
+	Gravity 0.25
+	States
+	{
+	Spawn:
+	   KMBL ABCD 4
+	   KMBL ABCD 4
+	   KMBL ABCD 4
+	   KMBL ABCD 4
+	   Stop
+	Death:
+	   BLU1 ABCDEF 2
+	   Stop
+	}
+}
+//----------------------------------------------------------------------------//
+//----------------------Special Gib For Ripper Heart--------------------------//
+
+Actor SpawnerGib
+{
+    Radius 0
+    Height 0
+	Projectile
+	Speed 10
+	Gravity 0.4
+	Scale 0.2
+	DeathSound "GIBS"
+	-NOGRAVITY
+	-NOBLOCKMAP
+	-SOLID
+	+Ripper
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+	    KMBL ABCD 2 A_SpawnItemEx("BloodTrail") 
+		Loop
+	Death:
+	    KMBL ABCDE 4
+		Stop
+    }
+}
+
+
+//----------------------Blood Gib---------------------------------------------//
+Actor BloodGib
+{
+    Radius 0
+    Height 0
+	Projectile
+	Speed 10
+	Gravity 0.4
+	Scale 0.2
+	DeathSound "GIBS"
+	-NOGRAVITY
+	-NOBLOCKMAP
+	-SOLID
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+	    KMBL ABCD 2 A_SpawnItemEx("BloodTrail") 
+		Loop
+	Death:
+	    KMBL ABCDE 4
+		Stop
+    }
+}
+//----------------------------------------------------------------------------//
+//-----------------------Trails for Gibs--------------------------------------//
+Actor BloodTrail
+{
+    Scale 0.2
+    +NOGRAVITY
+    -SOLID
+    +NOBLOCKMAP
+    +CLIENTSIDEONLY
+    States
+    {
+    Spawn:
+       KMBL ABCDE 4
+       Stop
+    }
+}
+//----------------------------------------------------------------------------//	 
+
+//-----------------------Heart Gib Projectile---------------------------------//
+ACTOR HeartGib
+{
+    Radius 0
+    Height 0
+	Projectile
+	Speed 10
+	Gravity 0.4
+	Scale 0.2
+	DeathSound "GIBS"
+	-NOGRAVITY
+	-NOBLOCKMAP
+	-SOLID
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+	    HTSP DEFGHIJKLMNO 2 A_SpawnItemEx("BloodTrail") 
+		Loop
+	Death:
+	    NULL A 1
+		NULL A 0 A_Jump(256, "Death1", "Death1", "Death2", "Death1")
+	    Loop
+	Death1:	
+	    NULL A 0 A_SpawnItem("HeartGibSpawner")
+	    Stop
+	Death2:
+	    KMBL ABCDE 4
+		Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//---------------If Projectile Die to Spawn Heart in map----------------------//
+ACTOR HeartGibSpawner
+{
+    Radius 4
+    Height 4
+    Health 1
+    Scale 0.2	
+    DeathSound "GIBS"
+	-SOLID
+	+ACTIVATEMCROSS
+	+DONTGIB
+	+NOICEDEATH
+	+OLDRADIUSDMG
+	+CLIENTSIDEONLY
+    States
+	{
+    Spawn:
+	   HTSP A 1 A_Jump(256, "Spawn1", "Spawn2", "Spawn3")
+	   Loop
+	Spawn1:
+	   HTSP A -1
+	   Stop
+	Spawn2:
+	   HTSP B -1
+	   Stop
+	Spawn3:
+       HTSP C -1
+	   Stop	
+    Death:
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//---------------------Liver Gib Projectile-----------------------------------//
+ACTOR LiverGib
+{
+    Radius 0
+    Height 0
+	Projectile
+	Speed 10
+	Gravity 0.4
+	Scale 0.2
+	DeathSound "GIBS"
+	-NOGRAVITY
+	-NOBLOCKMAP
+	-SOLID
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+	    PHSP DEFGHIJKLMNO 2 A_SpawnItemEx("BloodTrail") 
+		Loop
+	Death:
+	    NULL A 1
+		NULL A 0 A_Jump(256, "Death1", "Death1", "Death2", "Death1")
+	    Loop
+	Death1:	
+	    NULL A 0 A_SpawnItem("LiverSpawner")
+	    Stop
+	Death2:
+	    KMBL ABCDE 4
+		Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//---------------If Projectile Die to Spawn Liver in map----------------------//
+ACTOR LiverSpawner
+{
+    Radius 4
+    Height 4
+    Health 1
+    Scale 0.2	
+    DeathSound "GIBS"
+	-SOLID
+	+ACTIVATEMCROSS
+	+DONTGIB
+	+NOICEDEATH
+	+OLDRADIUSDMG
+	+CLIENTSIDEONLY
+    States
+	{
+    Spawn:
+	   PHSP A 1 A_Jump(256, "Spawn1", "Spawn2", "Spawn3")
+	   Loop
+	Spawn1:
+	   PHSP A -1
+	   Stop
+	Spawn2:
+	   PHSP B -1
+	   Stop
+	Spawn3:
+       PHSP C -1
+	   Stop
+    Death:
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//---------------------Skull Gib Projectile-----------------------------------//
+ACTOR SkullGib
+{
+    Radius 0
+    Height 0
+	Projectile
+	Speed 10
+	Gravity 0.4
+	Scale 0.2
+	DeathSound "GIBS"
+	-NOGRAVITY  
+	-NOBLOCKMAP
+	+CLIENTSIDEONLY
+    States
+	{
+	Spawn:
+	    CHER ABCDEFGHIJKL 2 A_SpawnItemEx("BloodTrail") 
+        Loop
+	Death:
+	    NULL A 1
+		NULL A 0 A_Jump(256, "Death1", "Death1", "Death2", "Death1")
+	    Loop
+	Death1:	
+	    NULL A 0 A_SpawnItem("SkullSpawner")
+	    Stop
+	Death2:
+	    KMBL ABCDE 4
+		Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//---------------If Projectile Die to Spawn Skull in map----------------------//
+ACTOR SkullSpawner
+{
+    Radius 4
+    Height 4
+    Health 1
+    Scale 0.2	
+    DeathSound "GIBS"
+	-SOLID
+	+ACTIVATEMCROSS
+	+DONTGIB
+	+NOICEDEATH
+	+OLDRADIUSDMG
+	+CLIENTSIDEONLY
+    States
+	{
+	Spawn:
+	   CHER L -1
+	   Stop
+	Death:
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//---------------------SKULL2 Gib Projectile----------------------------------//
+ACTOR Skull2Gib
+{
+    Radius 0
+    Height 0
+	Projectile
+	Speed 10
+	Gravity 0.4
+	Scale 0.2
+	DeathSound "GIBS"
+	-NOGRAVITY  
+	-NOBLOCKMAP
+	+CLIENTSIDEONLY
+    States
+	{
+    Spawn:
+	   CHSP DEFGHIJKLMNO 2 A_SpawnItemEx("BloodTrail") 
+	   Loop
+	Death:
+	    NULL A 1
+		NULL A 0 A_Jump(256, "Death1", "Death1", "Death2", "Death1")
+	    Loop
+	Death1:	
+	    NULL A 0 A_SpawnItem("Skull2Spawner")
+	    Stop
+	Death2:
+	    KMBL ABCDE 4
+		Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//--------------If Projectile Die to Spawn Skull2 in map----------------------//
+ACTOR Skull2Spawner
+{
+    Radius 4
+    Height 4
+    Health 1
+    Scale 0.2	
+    DeathSound "GIBS"
+	-SOLID
+	+ACTIVATEMCROSS
+	+DONTGIB
+	+NOICEDEATH
+	+OLDRADIUSDMG
+	+CLIENTSIDEONLY
+    States
+	{
+	Spawn:
+	   CHSP A 1 A_Jump(256, "Spawn1", "Spawn2", "Spawn3")
+	   Loop
+	Spawn1:
+	   CHSP A -1
+	   Stop
+	Spawn2:
+	   CHSP B -1
+	   Stop
+	Spawn3:
+       CHSP C -1
+	   Stop	
+    Death:
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)	   
+	   Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//---------------------Hand Gib Projectile----------------------------------//
+ACTOR HandGib
+{
+    Radius 0
+    Height 0
+	Projectile
+	Speed 10
+	Gravity 0.4
+	Scale 0.2
+	DeathSound "GIBS"
+	-NOGRAVITY  
+	-NOBLOCKMAP
+	+CLIENTSIDEONLY
+    States
+	{
+    Spawn:
+	   GIB1 ABCDEFGHIJKL 2 A_SpawnItemEx("BloodTrail") 
+	   Loop
+	Death:
+	    NULL A 1
+		NULL A 0 A_Jump(256, "Death1", "Death1", "Death2", "Death1")
+	    Loop
+	Death1:	
+	    NULL A 0 A_SpawnItem("HandSpawner")
+	    Stop
+	Death2:
+	    KMBL ABCDE 4
+		Stop
+    }
+}
+//----------------------------------------------------------------------------//
+
+//--------------If Projectile Die to Spawn Skull2 in map----------------------//
+ACTOR HandSpawner
+{
+    Radius 4
+    Height 4
+    Health 1
+    Scale 0.2	
+    DeathSound "GIBS"
+	-SOLID
+	+ACTIVATEMCROSS
+	+DONTGIB
+	+NOICEDEATH
+	+OLDRADIUSDMG
+	+CLIENTSIDEONLY
+    States
+	{
+	Spawn:
+	   GIB1 J -1
+	   Stop
+    Death:
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)
+	   NULL A 0 A_CustomMissile ("DropBloodForGibs", 5, 0, random (0, 360), 2, 0)	   
+	   Stop
+    }
+}
+//----------------------------------------------------------------------------//
