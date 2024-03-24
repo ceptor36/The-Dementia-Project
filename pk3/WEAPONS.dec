@@ -51,6 +51,7 @@ ACTOR NuFist : DementiaWeapon replaces Fist
     PNCH A 1 a_weaponready	
     loop   
   Fire:
+    PNCH A 0 A_JumpIfInventory("PowerStrength",1,"BerserkedFire")
     PNCH A 0 A_JumpIfInventory("Stamina",5,1)
     goto Ready
     PNCH A 0 A_JumpIfInventory("FistToken",1,"OtherFire")
@@ -59,7 +60,7 @@ ACTOR NuFist : DementiaWeapon replaces Fist
     PNCH B 0 A_Playsound("fist/swing")
 	PNCH B 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	PNCH B 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
-    PNCH C 0 A_Punch
+    PNCH C 0 A_CustomPunch(2 * random(1, 10), TRUE, 0, "NewPunchPuff")
 	PNCH C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	PNCH C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
     PNCH D 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -78,13 +79,52 @@ ACTOR NuFist : DementiaWeapon replaces Fist
     PNCH E 0 A_Playsound("fist/swing")
 	PNCH E 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	PNCH E 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
-    PNCH F 0 A_Punch
+    PNCH F 0 A_CustomPunch(2 * random(1, 10), TRUE, 0, "NewPunchPuff")
 	PNCH F 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	PNCH F 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
     PNCH G 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	PNCH G 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	PNCH A 0 A_TakeInventory("FistToken",1)
 	PNCH A 0 A_TakeInventory("Stamina",3)
+	PNCH A 0 A_ReFire
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    goto Ready
+  BerserkedFire:
+    PNCH A 0 A_JumpIfInventory("Stamina",5,1)
+    goto Ready
+    PNCH A 0 A_JumpIfInventory("FistToken",1,"BerserkedOtherFire")
+    PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH B 0 A_Playsound("fist/swing")
+	PNCH B 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH B 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH C 0 A_CustomPunch(20 * random(1, 10), TRUE, 0, "NewPunchPuff")
+	PNCH C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH D 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH D 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 0 A_GiveInventory("FistToken",1)
+	PNCH A 0 A_TakeInventory("Stamina",4)
+	PNCH A 0 A_ReFire
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    goto Ready
+  BerserkedOtherFire:
+    PNCH A 0 A_JumpIfInventory("Stamina",5,1)
+    goto Ready
+    PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH E 0 A_Playsound("fist/swing")
+	PNCH E 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH E 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH F 0 A_CustomPunch(20 * random(1, 10), TRUE, 0, "NewPunchPuff")
+	PNCH F 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH F 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+    PNCH G 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH G 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	PNCH A 0 A_TakeInventory("FistToken",1)
+	PNCH A 0 A_TakeInventory("Stamina",4)
 	PNCH A 0 A_ReFire
 	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	PNCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)

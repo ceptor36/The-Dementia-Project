@@ -556,6 +556,21 @@ States
 }
 }
 
+ACTOR NewPunchPuff : BulletPuff
+{
+	Alpha 1.0
+	scale 0.6
+	Mass 1
+	States
+	{
+	Spawn:
+	Melee:
+	    GPUF A 2
+	    GPUF BCDE 4
+	    Stop
+	}
+}
+
 ACTOR NewPuff : BulletPuff replaces BulletPuff
 {
 	Alpha 1.0
@@ -572,6 +587,8 @@ ACTOR NewPuff : BulletPuff replaces BulletPuff
 	    Stop
 	}
 }
+
+//for the fist stuff
 
 ACTOR Puff2
 {
