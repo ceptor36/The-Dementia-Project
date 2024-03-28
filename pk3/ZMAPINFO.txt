@@ -66,3 +66,13 @@ map HUBHUH lookup "???"
 	sky1 = "star"
 	next = HUBHUH
 }
+
+//level names
+map F1M1 lookup "Tutorial"
+{
+	music = "D_TUTOR"
+	sky1 = "SKY08"
+	//disabled on account they go back to the main maps
+}
+
+//boss level names

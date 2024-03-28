@@ -92,7 +92,7 @@ ACTOR Crackles : Weapon
 }
 //tokens and shit
 
-Actor StaatToken : Inventory
+Actor AntiCutsceneRepellant : Inventory
 {
   +INVENTORY.ALWAYSPICKUP
   +INVENTORY.UNDROPPABLE
@@ -109,7 +109,161 @@ Actor StaatToken : Inventory
 
 actor FistToken : Inventory{+INVENTORY.UNDROPPABLE}
 
-Actor ThugShards : Inventory
+//floor 1 shards
+Actor ThugShardTutorial : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 1
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+Actor ThugShardsFloor1 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+Actor StoryPartsFloor1 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+//floor 2 shards
+Actor ThugShardsFloor2 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+Actor StoryPartsFloor2 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+//floor 3 shards
+Actor ThugShardsFloor3 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+Actor StoryPartsFloor3 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+//floor 4 stuff
+Actor ThugShardsFloor4 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+Actor StoryPartsFloor4 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+
+//floor 5 stuff
+Actor ThugShardsFloor5 : Inventory
+{
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 5
+  States
+  {
+  Spawn:
+    TNT1 A -1 
+    Stop
+  }
+}
+Actor StoryPartsFloor5 : Inventory
 {
   +INVENTORY.ALWAYSPICKUP
   +INVENTORY.UNDROPPABLE
