@@ -63,22 +63,35 @@ Actor D3PlasmaBall replaces PlasmaBall
    }
 }
 
-Actor PlasmaFlameSpawner
+Actor IDFBallEasy : D3PlasmaBall
 {
-    Radius 1
-    Height 1
-    Speed 14
-    PROJECTILE
-    States
-    {
-    Spawn:
-        TNT1 A 1
-        TNT1 A 0 A_Die
-        Goto Death
-    Death:
-        TNT1 A 0 A_CustomMissile("PlasmaFlame",0,0,0)
-        Stop
-    }
+   Translation "192:207=128:143", "240:247=13:15"
+   Damage 1
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      Loop
+   Death:
+      D3PB A 1 BRIGHT A_PlaySound("weapons/d3plasmax")
+      D3PB BCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+      D3PF ABC 1 BRIGHT
+      Stop
+   }
 }
 
 Actor PlasmaTrail
@@ -98,6 +111,81 @@ Actor PlasmaTrail
       D3PF ABC 1
       Stop
    }
+}
+
+ACTOR PlasmaTrailBrownish : PlasmaTrail 
+{
+   Translation "192:207=128:143", "240:247=13:15"
+}
+
+ACTOR IDFBallMedium : D3PlasmaBall
+{
+   Translation "192:207=112:127", "240:247=123:123"
+   Damage 2
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      Loop
+   }
+}
+
+ACTOR IDFBallHard : D3PlasmaBall
+{
+   Translation "192:207=168:182", "240:247=184:191"
+   Damage 3
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      Loop
+   }
+}
+
+Actor PlasmaFlameSpawner
+{
+    Radius 1
+    Height 1
+    Speed 14
+    PROJECTILE
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        TNT1 A 0 A_Die
+        Goto Death
+    Death:
+        TNT1 A 0 A_CustomMissile("PlasmaFlame",0,0,0)
+        Stop
+    }
 }
 
 Actor PlasmaFlame
@@ -603,4 +691,54 @@ ACTOR Puff2
 		PUFF GHI 4
 		Stop
 	}
+}
+
+ACTOR CumShot
+{
+  Radius 6
+  Height 16
+  Speed 15
+  FastSpeed 20
+  Damage 8
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  States
+  {
+  Spawn:
+    CBAL AB 4 Bright
+    Loop
+  Death:
+    CBAL CDE 6 Bright
+    Stop
+  }
+}
+
+ACTOR PissShot
+{
+  Radius 6
+  Height 16
+  Speed 15
+  FastSpeed 20
+  Damage 8
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  States
+  {
+  Spawn:
+    PBAL AB 4 Bright
+    Loop
+  Death:
+    PBAL CDE 6 Bright
+    Stop
+  }
 }

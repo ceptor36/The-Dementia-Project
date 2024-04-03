@@ -4,6 +4,11 @@ clearepisodes
 gameinfo 
 {
 	PlayerClasses = "DementiaGuy"
+	Intro
+	{
+	Video = "movies/opening.ivf"
+	Sound = "opening"
+	}
 }
 
 gamedefaults
@@ -25,46 +30,12 @@ episode HUB01
 	key = "h"
 }
 
+//fakeout section (like 3 maps, terry trap after)
 map HUB01 lookup "Repossessed Trump Tower, Floor 1"
 {
 	music = "D_PTOWER"
 	sky1 = "SKY08"
 	next = HUB02
-}
-
-map HUB02 lookup "Repossessed Trump Tower, Floor 2"
-{
-	music = "D_PTOWER"
-	sky1 = "SKY08"
-	next = HUB03
-}
-
-map HUB03 lookup "Repossessed Trump Tower, Floor 3"
-{
-	music = "D_PTOWER"
-	sky1 = "SKY08"
-	next = HUB04
-}
-
-map HUB04 lookup "Repossessed Trump Tower, Floor 4"
-{
-	music = "D_PTOWER"
-	sky1 = "SKY08"
-	next = HUB05
-}
-
-map HUB05 lookup "Repossessed Trump Tower, Rooftop"
-{
-	music = "D_PTOWER"
-	sky1 = "SKY08"
-	next = HUBHUH
-}
-
-map HUBHUH lookup "???"
-{
-	music = "D_ESTEN"
-	sky1 = "star"
-	next = HUBHUH
 }
 
 //level names
@@ -75,4 +46,11 @@ map F1M1 lookup "Tutorial"
 	//disabled on account they go back to the main maps
 }
 
-//boss level names
+map F1M2 lookup "Epstein Gutter"
+{
+	music = "D_GTTR"
+	sky1 = "SKY08"
+	//disabled on account they go back to the main maps
+}
+
+//after terry trap
