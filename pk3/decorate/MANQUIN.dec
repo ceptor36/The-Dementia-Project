@@ -1,0 +1,366 @@
+//Wolfenstein SS gone, new mechanic in!
+//Don't trust the decorations.
+
+ACTOR EvilMannequin
+{
+	Tag "Mannequin"
+	Health 10
+	Radius 16
+	Height 50
+	Mass 0x7FFFFFFF 
+	Speed 7
+	PainChance 255
+	MeleeRange 48
+	Monster
+	+FLOORCLIP
+	+LOOKALLAROUND
+	-SHOOTABLE
+	+NOBLOOD
+	+NOICEDEATH
+	-COUNTKILL
+	DeathSound "Mannequin/Die"
+	Obituary "%o should have looked behind."
+	States
+	{
+	Spawn:
+		 MNQ0 A 0
+		 MNQ0 A 0 A_Jumpifinventory("ITSALIIIIIVE",1,"Spawn2")
+		 MNQ0 A 0 A_GiveInventory("ITSALIIIIIVE",1)
+		 MNQ0 A 0 A_Setscale(1,frandom(1,1.2))
+		 MNQ0 A 0 A_Jump(128,2)
+		 MNQ0 A 0 A_Setscale(-1,frandom(1,1.2))
+		 MNQ0 A 0 A_Jump(128,"Spawn2")
+		 MNQ1 A 0 A_Jump(128,"Spawn2")
+		 MNQ2 A 0
+	Spawn2:
+		"####" A 0 A_Stopsound(7)
+		"####" A 2 A_Look
+		Loop
+	See:
+		"####" A 0 A_JumpIfInTargetLOS("StopStalk",120)
+		"####" A 0 A_Playsound("Mannequin/Move",7,1,TRUE)
+		"####" BBB 1 A_Chase
+		"####" A 0 A_SetShootable
+		loop
+	StopStalk:
+		"####" A 0 A_Stopsound(7)
+		"####" A 0 A_UnSetShootable
+		"####" A 2
+		Goto See
+	Melee:
+		"####" A 0 A_Stopsound(7)
+		"####" A 0 A_SetShootable
+		"####" A 0 A_Playsound("Mannequin/Stalk",0)
+		"####" BBBCD 4 A_FaceTarget
+		"####" E 6 A_CustomMeleeAttack(50,"Mannequin/Attack","SoundEmpty") 
+		"####" DDDBBB 1 A_Wander
+		"####" A 0 A_UnSetShootable
+		Goto See
+	Pain:
+		"####" A 0 A_Stopsound(7)
+		"####" F 2 A_Die
+		Goto See
+	Death:
+		"####" A 0 A_Stopsound(7)
+		"####" F 8 A_Scream
+		"####" AAAAA 0 A_Spawnitemex("EvilMannequinCloth",0,0,20,frandom(-8,8),frandom(-8,8),frandom(-3,8),0,SXF_TRANSFERTRANSLATION)
+		"####" A 0 A_Spawnitemex("EvilMannequinChest",0,0,20,frandom(-8,8),frandom(-8,8),frandom(-3,8),0,SXF_TRANSFERTRANSLATION)
+		"####" AA 0 A_Spawnitemex("EvilMannequinArm",0,0,32,frandom(-8,8),frandom(-8,8),frandom(3,8),0,SXF_TRANSFERTRANSLATION)
+		"####" AA 0 A_Spawnitemex("EvilMannequinLeg",0,0,15,frandom(-8,8),frandom(-8,8),frandom(-3,8),0,SXF_TRANSFERTRANSLATION)
+		"####" A 0 A_Spawnitemex("EvilMannequinHead",0,0,45,frandom(-8,8),frandom(-8,8),frandom(6,10),0,SXF_TRANSFERTRANSLATION)
+		"####" A 2 A_NoBlocking
+		Stop
+	}
+}
+
+Actor EvilMannequinChest
+{
+  Radius 8
+  Height 8
+  Speed 8
+  +DoomBounce
+  +DropOff
+  +Missile
+  +Noblockmap
+  -Solid
+  +Movewithsector
+  States
+  {
+  Spawn:
+	Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(128,2)
+	TNT1 A 0 A_Setscale(-1,1)
+	Spawn2:
+    MNQT ABCD 4
+    Loop
+  Death:
+    MNQT E -1
+    Stop
+  }
+} 
+
+Actor EvilMannequinArm
+{
+  Radius 8
+  Height 8
+  Speed 8
+  +DoomBounce
+  +DropOff
+  +Missile
+  +Noblockmap
+  -Solid
+  +Movewithsector
+  States
+  {
+  Spawn:
+    MNQA ABCD 2
+    Loop
+  Death:
+    MNQA E -1
+    Stop
+  }
+} 
+
+Actor EvilMannequinLeg
+{
+  Radius 8
+  Height 8
+  Speed 8
+  +DoomBounce
+  +DropOff
+  +Missile
+  +Noblockmap
+  -Solid
+  +Movewithsector
+  States
+  {
+  Spawn:
+    MNQL ABCD 2
+    Loop
+  Death:
+    MNQL E -1
+    Stop
+  }
+} 
+
+Actor EvilMannequinCloth
+{
+  Radius 8
+  Height 8
+  Speed 8
+  +DropOff
+  +Missile
+  +Noblockmap
+  -Solid
+  +Movewithsector
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Setscale(frandom(.8,1.5),frandom(.8,1.5))
+	Spawn2:
+    MNCL ABC 4
+    Loop
+  Death:
+    MNCL D -1
+    Stop
+  }
+} 
+
+Actor EvilMannequinHead
+{
+  Radius 8
+  Height 8
+  Speed 8
+  +DoomBounce
+  +DropOff
+  +Missile
+  +Noblockmap
+  -Solid
+  +Movewithsector
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(128,2)
+	TNT1 A 0 A_Setscale(-1,1)
+	Spawn2:
+    MNQH AA 4
+    Loop
+  Death:
+	MNQH A 32
+	MNQH BAAABAAAAABAABA 3
+    MNQH B -1
+    Stop
+  }
+} 
+
+ACTOR ITSALIIIIIVE : Inventory
+{
+   Inventory.MaxAmount 1
+}
+
+//////////////////////////////////////
+//SPAWNERS
+
+ACTOR NormalMannequin 8155
+{
+	Tag "Mannequin"
+	Radius 16
+	Height 50
+	ProjectilePassHeight -16
+	+SOLID
+	+USESPECIAL
+	States
+	{
+	Spawn:
+		 MNQ0 A 0
+		 MNQ0 A 0 A_Setscale(1,frandom(1,1.2))
+		 MNQ0 A 0 A_Jump(128,2)
+		 MNQ0 A 0 A_Setscale(-1,frandom(1,1.2))
+		 MNQ0 A 0 A_Jump(128,"Spawn2")
+		 MNQ1 A 0 A_Jump(128,"Spawn2")
+		 MNQ2 A 0
+	Spawn2:
+		"####" A -1
+		Stop
+	}
+}
+
+ACTOR MannequinRandomSpawner : RandomSpawner replaces WolfensteinSS
+{
+DropItem "EvilMannequin1"
+DropItem "EvilMannequin2"
+DropItem "EvilMannequin3"
+DropItem "NormalMannequinSpawner"
+DropItem "NormalMannequinSpawner"
+DropItem "EvilMannequin5"
+DropItem "NormalMannequinSpawner"
+DropItem "EvilMannequin6"
+DropItem "NormalMannequinSpawner"
+DropItem "EvilMannequin7"
+DropItem "NormalMannequinSpawner"
+DropItem "EvilMannequin8"
+DropItem "NormalMannequinSpawner"
+DropItem "EvilMannequin9"
+DropItem "NormalMannequinSpawner"
+DropItem "EvilMannequin10"
+DropItem "NormalMannequinSpawner"
+DropItem "EvilMannequin11"
+}
+
+
+ACTOR NormalMannequinSpawner : RandomSpawner 8157
+{
+DropItem "NormalMannequin1"
+DropItem "NormalMannequin2"
+DropItem "NormalMannequin3"
+DropItem "NormalMannequin5"
+DropItem "NormalMannequin6"
+DropItem "NormalMannequin7"
+DropItem "NormalMannequin8"
+DropItem "NormalMannequin9"
+DropItem "NormalMannequin10"
+DropItem "NormalMannequin11"
+}
+
+ACTOR EvilMannequin1 : EvilMannequin
+{
+Translation "112:119=152:159", "120:127=9:12"
+}
+
+ACTOR EvilMannequin2 : EvilMannequin
+{
+Translation "112:127=176:191"
+}
+
+ACTOR EvilMannequin3 : EvilMannequin
+{
+Translation "112:123=196:207", "124:127=240:243"
+}
+
+ACTOR EvilMannequin5 : EvilMannequin
+{
+Translation "112:127=16:38"
+}
+
+ACTOR EvilMannequin6 : EvilMannequin
+{
+Translation "112:127=32:47"
+}
+ACTOR EvilMannequin7 : EvilMannequin
+{
+Translation "112:113=225:227", "114:123=160:166", "124:127=167:167"
+}
+
+ACTOR EvilMannequin8 : EvilMannequin
+{
+Translation "112:116=107:111", "117:127=5:8"
+}
+
+ACTOR EvilMannequin9 : EvilMannequin
+{
+Translation "112:112=4:4", "113:127=80:106"
+}
+
+ACTOR EvilMannequin10 : EvilMannequin
+{
+Translation "112:121=210:223", "122:127=35:47"
+}
+
+ACTOR EvilMannequin11 : EvilMannequin
+{
+Translation "112:127=112:127"
+}
+
+/////////////////////////////////////////////////////////////
+
+ACTOR NormalMannequin1 : NormalMannequin
+{
+Translation "112:119=152:159", "120:127=9:12"
+}
+
+ACTOR NormalMannequin2 : NormalMannequin
+{
+Translation "112:127=176:191"
+}
+
+ACTOR NormalMannequin3 : NormalMannequin
+{
+Translation "112:123=196:207", "124:127=240:243"
+}
+
+ACTOR NormalMannequin5 : NormalMannequin
+{
+Translation "112:127=16:38"
+}
+
+ACTOR NormalMannequin6 : NormalMannequin
+{
+Translation "112:127=32:47"
+}
+ACTOR NormalMannequin7 : NormalMannequin
+{
+Translation "112:113=225:227", "114:123=160:166", "124:127=167:167"
+}
+
+ACTOR NormalMannequin8 : NormalMannequin
+{
+Translation "112:116=107:111", "117:127=5:8"
+}
+
+ACTOR NormalMannequin9 : NormalMannequin
+{
+Translation "112:112=4:4", "113:127=80:106"
+}
+
+ACTOR NormalMannequin10 : NormalMannequin
+{
+Translation "112:121=210:223", "122:127=35:47"
+}
+
+ACTOR NormalMannequin11 : NormalMannequin
+{
+Translation "112:127=112:127"
+}

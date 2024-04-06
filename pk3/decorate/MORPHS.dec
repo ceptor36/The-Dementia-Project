@@ -1,0 +1,139 @@
+ACTOR CheatingPlayer : PlayerPawn 
+{
+  +NOSKIN
+  Speed 1
+  Health 100
+  Radius 16
+  Height 56
+  Mass 100
+  PainChance 255
+  PainSound ""
+  DeathSound ""
+  Player.MorphWeapon "CheatingStaff"
+  -PICKUP
+  States
+  {
+  Spawn:
+    NIGG A 10 
+    Loop
+  See:
+    NIGG A 3
+    Loop
+  Melee:
+  Missile:
+    NIGG A 8 
+    NIGG A 6
+    Goto Spawn
+  Pain:
+    NIGG A 2 
+    NIGG A 2 A_Pain
+    Goto Spawn
+  Death:
+    NIGG A 8 A_SkullPop
+    NIGG A 8 A_PlayerScream
+    NIGG A 6
+    NIGG A 6 A_NoBlocking
+    NIGG A -1
+    stop
+  XDeath:
+    NIGG A 5 A_SkullPop
+    NIGG A 5 A_XScream
+    NIGG A 5
+    NIGG A 5 A_NoBlocking
+    NIGG A 5
+    NIGG A -1
+    Stop
+  }
+}
+
+ACTOR CuckPlayer : PlayerPawn 
+{
+  +NOSKIN
+  Speed 1
+  Health 100
+  Radius 16
+  Height 56
+  Mass 100
+  PainChance 255
+  PainSound ""
+  DeathSound ""
+  Player.MorphWeapon "Colt45"
+  -PICKUP
+  States
+  {
+  Spawn:
+    CUC0 A 10 
+    Loop
+  See:
+    CUC0 ABCD 3
+    Loop
+  Melee:
+  Missile:
+    CUC0 E 8 
+    CUC0 F 6
+    Goto Spawn
+  Pain:
+    CUC0 G 2 
+    CUC0 G 2 A_Pain
+    Goto Spawn
+  Death:
+    CUC0 H 8 A_SkullPop
+    CUC0 I 8 A_PlayerScream
+    CUC0 J 6
+    CUC0 K 6 A_NoBlocking
+    CUC0 L -1
+    stop
+  XDeath:
+    CUC0 H 5 A_SkullPop
+    CUC0 I 5 A_XScream
+    CUC0 J 5
+    CUC0 K 5 A_NoBlocking
+    CUC0 L 5
+    CUC0 L -1
+    Stop
+  }
+}
+
+//morph weapons
+actor Colt45 : Weapon //shitty cuckold weapon
+{
+  Weapon.SelectionOrder 1900
+  Weapon.BobRangeX 0
+  Weapon.BobRangeY 0
+  Weapon.AmmoUse 1
+  Weapon.AmmoGive 20
+  Weapon.AmmoType "Elixir"
+  AttackSound "RIFLFIRE"
+  Weapon.SlotNumber 2
+  Obituary "%o was Killed by %k's Colt45."
+  +WEAPON.WIMPY_WEAPON
+  Inventory.Pickupmessage "Picked up a Colt45."
+  States
+  {
+  Ready:
+    COLT A 1 A_WeaponReady
+    Loop
+  Deselect:
+    COLT A 1 A_Lower
+    Loop
+  Select:
+    COLT A 1 A_Raise
+    Loop
+  Fire:
+    COLT A 0
+	COLF A 1 A_FireBullets(5.2,1,1,1)
+	COLF A 1 A_Light2
+	COLF A 1 A_Light1
+	COLT B 3 A_Light0
+    COLT CDE 3
+    COLT B 3 A_ReFire
+    Goto Ready
+  Flash:
+    COLF A 3 Bright A_Light1
+    COLF A 3 Bright A_Light0
+    Goto LightDone
+  Spawn:
+    COLP A -1
+    Stop
+  }
+}

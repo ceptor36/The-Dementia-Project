@@ -24,6 +24,11 @@ weapons/d3plasmax1 DSD3PH1
 weapons/d3plasmax2 DSD3PH2
 weapons/d3plasmax3 DSD3PH3
 
+$RANDOM bot/racebot { bot/racebot1 bot/racebot2 }
+
+bot/racebot1 ROBOTV
+bot/racebot2 ROBOTV2
+
 $random puff/ric 		{ puff/ric1 puff/ric2 puff/ric3 puff/ric4 puff/ric5 puff/ric6 puff/ric7 }
 puff/ric1 			dsrich1
 puff/ric2 			dsrich2
@@ -44,4 +49,41 @@ flier/explosion EXPLOSIO
 lizard/laser    GBLASR01
 flyer/flying	COMMSP
 
+Mannequin/Attack    MNQATK
+Mannequin/Die       MNQDIE
+Mannequin/Stalk     MNQSTL
+Mannequin/Move      MNQMOVE
+
 OPEN opening
+
+keen/pain ERRORASS
+keen/death AHHH
+
+$random fatso/die { fatfain1 fatfain2 fatfain3 fatfain4 }
+$random fatso/pain { fatpain1 fatpain2 fatfuck1 fatfuck2 fatfuck3 fatfuck4 fatfuck5 fatfuck6 fatfuck7 fatfuck8 fatfuck9 }
+$random fatso/roam { fatroam1 fatroam2 fatroam3 fatroam4 }
+$random fatso/see { fatspot1 fatspot2 fatspot3 }
+$random fatso/raiseguns { }
+
+fatfain1 fatfain1
+fatfain2 fatfain2
+fatfain3 fatfain3
+fatfain4 fatfain4
+fatpain1 fatpain1
+fatpain2 fatpain2
+fatfuck1 fatfuck1
+fatfuck2 fatfuck2
+fatfuck3 fatfuck3
+fatfuck4 fatfuck4
+fatfuck5 fatfuck5
+fatfuck6 fatfuck6
+fatfuck7 fatfuck7
+fatfuck8 fatfuck8
+fatfuck9 fatfuck9
+fatroam1 fatroam1
+fatroam2 fatroam2
+fatroam3 fatroam3
+fatroam4 fatroam4
+fatspot1 fatspot1
+fatspot2 fatspot2
+fatspot3 fatspot3

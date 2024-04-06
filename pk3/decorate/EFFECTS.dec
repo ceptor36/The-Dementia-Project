@@ -1,0 +1,973 @@
+ACTOR StaatcubeExplosive
+{
+  Radius 8
+  Height 16
+  Speed 20
+  Damage 30
+  Projectile
+  SeeSound "brain/spit"
+  DeathSound "brain/cubeboom"
+  States
+  {
+  Spawn:
+    STCU ABCD 3 Bright 
+    Loop
+  Death:
+	BOOM A 2 Bright a_playsound("weapons/rocklx")
+	BOOM B 6 Bright A_Explode(128, 64)
+	BOOM C 6 Bright
+	BOOM D 4 Bright
+	stop
+  }
+}
+
+Actor D3PlasmaBall replaces PlasmaBall
+{
+   Decal Doom3PlasmaScorch
+   Speed 27
+   Height 8
+   Radius 13
+   Damage 6
+   RenderStyle Translucent
+   Alpha 0.75
+   Scale 0.55
+   PROJECTILE
+   SeeSound "weapons/d3plasmaf"
+   +DROPOFF
+   +NOBLOCKMAP
+   +NOGRAVITY
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrail", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrail", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrail", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrail", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrail", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrail", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrail", 0, 0, 0)
+      Loop
+   Death:
+      D3PB A 1 BRIGHT A_PlaySound("weapons/d3plasmax")
+      D3PB BCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+      D3PF ABC 1 BRIGHT
+      Stop
+   }
+}
+
+Actor IDFBallEasy : D3PlasmaBall
+{
+   Translation "192:207=128:143", "240:247=13:15"
+   Damage 1
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailBrownish", 0, 0, 0)
+      Loop
+   Death:
+      D3PB A 1 BRIGHT A_PlaySound("weapons/d3plasmax")
+      D3PB BCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+      D3PF ABC 1 BRIGHT
+      Stop
+   }
+}
+
+Actor PlasmaTrail
+{
+   Scale 0.15
+   Speed 0.2
+   RenderStyle Translucent
+   Alpha 0.4
+   +NOINTERACTION
+   +NOGRAVITY
+   +DOOMBOUNCE
+   +DROPOFF
+   States
+   {
+   Spawn:
+      D3PB ABCDEFGHIJKLMNOPQRSTUVWXYZ 1
+      D3PF ABC 1
+      Stop
+   }
+}
+
+ACTOR PlasmaTrailBrownish : PlasmaTrail 
+{
+   Translation "192:207=128:143", "240:247=13:15"
+}
+
+ACTOR IDFBallMedium : D3PlasmaBall
+{
+   Translation "192:207=112:127", "240:247=123:123"
+   Damage 2
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      Loop
+   }
+}
+
+ACTOR IDFBallHard : D3PlasmaBall
+{
+   Translation "192:207=168:182", "240:247=184:191"
+   Damage 3
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      Loop
+   }
+}
+
+Actor PlasmaFlameSpawner
+{
+    Radius 1
+    Height 1
+    Speed 14
+    PROJECTILE
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        TNT1 A 0 A_Die
+        Goto Death
+    Death:
+        TNT1 A 0 A_CustomMissile("PlasmaFlame",0,0,0)
+        Stop
+    }
+}
+
+Actor PlasmaFlame
+{
+	PROJECTILE
+	+NOINTERACTION
+	+NOGRAVITY
+	+FLOORCLIP
+	+NOBLOCKMAP
+	Alpha 0.8
+	Scale 0.2
+	RenderStyle Add
+	States
+	{
+	Spawn:
+	   TNT1 A 0
+	   D3PB BCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_FadeOut(0.01)
+	   Stop
+	}
+}
+
+ACTOR PistolaCasing
+{
+	Scale .1
+	Projectile
+	-NOGRAVITY
+	-NOBLOCKMAP
+	+BOUNCEONACTORS
+	BounceType Doom
+	BounceFactor .5
+	WallBounceFactor .2
+	Mass 5
+	Radius 3
+	Height 3
+	States
+	{
+	Spawn:
+		CAS1 ABCDEFGH 2
+		Loop
+	Death:
+		"####" "#" 100
+		"####" "#" 1 A_FadeOut(0.1)
+		Wait
+	}
+}
+
+ACTOR ShotgunCasing : PistolaCasing
+{
+	Scale .175
+	States
+	{
+	Spawn:
+		CAS2 ABCDEFGH 2
+		Loop
+	}
+}
+
+ACTOR PistolShotCasing : ShotgunCasing
+{
+	Scale .15
+}
+
+ACTOR RifleCasing : PistolaCasing
+{
+	Scale .15
+	States
+	{
+	Spawn:
+		CAS3 ABCDEFGH 2
+		Loop
+	}
+}
+
+ACTOR AreYaSmokinYet
+{
+	+CLIENTSIDEONLY
+	+MISSILE
+	-NOGRAVITY
+	-LOWGRAVITY
+	+FORCEXYBILLBOARD
+	+THRUACTORS
+	-SOLID
+	Speed 2
+	scale 0.2
+	Alpha 0.75
+	Gravity 0.7
+	States
+	{
+	Spawn:
+	ZSMK A 0
+	ZSMK ABCDEFGHIJKLMNOPQR 1 bright A_FadeOut(0.03)
+	Stop
+	}
+}
+
+Actor LightninPuff : BulletPuff
+{
+	+PUFFONACTORS
+	+ALWAYSPUFF
+	Renderstyle Add
+	VSpeed 0
+	States
+	{
+	Spawn:
+		RZAP A 2 bright
+		RZAP B 2 bright A_playsound ("LHIT",0,0.5)
+		RZAP C 2 bright
+		RZAP D 2 bright
+		RZAP E 2 bright
+		RZAP F 2 bright
+		RZAP G 2 bright
+		RZAP H 2 bright
+		RZAP I 2 bright
+		Stop
+	Melee:
+		Goto Spawn
+	}	
+}
+
+//thank me later indie studio Nintendo of America
+
+actor boom
+{
++nogravity
+states
+	{
+	spawn:
+		BOOM A 2 Bright a_playsound("weapons/rocklx")
+		BOOM B 6 Bright
+		BOOM C 6 Bright
+		BOOM D 4 Bright
+		stop
+	}
+}
+
+actor bigboom : boom
+{
+	scale 3
+}
+
+
+actor tinyboom : boom
+{
+	scale 0.5
+}
+
+//fuckyhole
+
+actor FuckMissile : RandomSpawner
+{
+	DropItem "OPPlasmaBlue"
+	DropItem "OPPlasmaGreen"
+	DropItem "OPPlasmaYellow"
+	DropItem "OPPlasmaPink"
+	DropItem "OPPlasmaRed"
+}
+
+ACTOR OPPlasmaBlue : D3PlasmaBall
+{
+	Damage 30
+}
+
+ACTOR OPPlasmaGreen : D3PlasmaBall
+{
+	Translation "192:207=112:127", "240:247=123:123"
+	Damage 30
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailGreen", 0, 0, 0)
+      Loop
+   }
+}
+
+ACTOR PlasmaTrailGreen : PlasmaTrail 
+{
+	Translation "192:207=112:127", "240:247=123:123"
+}
+
+ACTOR OPPlasmaYellow : D3PlasmaBall
+{
+	Translation "192:207=160:167", "240:247=166:166"
+	Damage 30
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailYellow", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailYellow", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailYellow", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailYellow", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailYellow", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailYellow", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailYellow", 0, 0, 0)
+      Loop
+   }
+}
+
+ACTOR PlasmaTrailYellow : PlasmaTrail 
+{
+	Translation "192:207=160:167", "240:247=166:166"
+}
+
+ACTOR OPPlasmaPink : D3PlasmaBall
+{
+	Translation "192:207=250:254", "240:247=254:254"
+	Damage 30
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailPink", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailPink", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailPink", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailPink", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailPink", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailPink", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailPink", 0, 0, 0)
+      Loop
+   }
+}
+
+ACTOR PlasmaTrailPink : PlasmaTrail 
+{
+	Translation "192:207=250:254", "240:247=254:254"
+}
+
+ACTOR OPPlasmaRed : D3PlasmaBall
+{
+	Translation "192:207=168:182", "240:247=184:191"
+	Damage 30
+   States
+   {
+   Spawn:
+      TNT1 A 0
+      D3PP AB 1 BRIGHT
+      D3PP C 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP DE 1 BRIGHT
+      D3PP F 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP GH 1 BRIGHT
+      D3PP I 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP JK 1 BRIGHT
+      D3PP L 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP MN 1 BRIGHT
+      D3PP O 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP PQ 1 BRIGHT
+      D3PP R 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      D3PP ST 1 BRIGHT
+      D3PP U 1 BRIGHT A_CustomMissile("PlasmaTrailRed", 0, 0, 0)
+      Loop
+   }
+}
+
+ACTOR PlasmaTrailRed : PlasmaTrail 
+{
+	Translation "192:207=168:182", "240:247=184:191"
+}
+
+ACTOR Fliersmoke
+{
+Speed 8
+Renderstyle Translucent
+Alpha 0.67
+PROJECTILE
+States
+{
+   Spawn:
+    FLSM ABCDE 4
+    TRAN A -1
+    Stop
+}
+}
+
+ACTOR FodderLaser {
+	Scale 0.4
+	Radius 8
+	Height 8
+	RenderStyle ADD
+	Speed 25
+	Damage 2
+	Projectile
+	SeeSound "lizard/laser"
+	DeathSound "lizard/laserx"
+	Decal PlasmaScorchLower
+	States 
+	{ 
+	Spawn:
+		DLAS A 1 BRIGHT A_SpawnItemEx("FodderLaserTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+		Loop
+	Death:
+		DLAS A 2 BRIGHT A_FadeOut(0.1)
+		Loop
+	}
+	}
+
+ACTOR FodderLaserTrail {
+	Scale 0.4
+	Radius 8
+	Height 8
+	RenderStyle ADD
+	+Nogravity
+	States 
+	{ 
+	Spawn:
+		DLAS A 4
+		Stop 
+	}
+}
+
+actor CrashingFlier
+{
+     SeeSound ""
+     +NOCLIP
+     Speed 3
+     MissileHeight 0
+     States
+     {
+     Spawn:
+		NULL A 0 A_CustomMissile ("HeartGib", 30, 0, 45, 2, 30)
+		NULL A 0 A_CustomMissile ("LiverGib", 30, 0, 135, 2, 30)
+		NULL A 0 A_CustomMissile ("SkullGib", 30, 0, 225, 2, 30)
+		NULL A 0 A_CustomMissile ("Skull2Gib", 30, 0, 315, 2, 30)
+		NULL AA 0 A_CustomMissile ("HandGib", 30, 0, 180, 2, 30)
+		NULL AAAAAA 0 A_CustomMissile ("BloodGib", 30, 0, 60, 2, 30)
+         FLYC AAAAAA 1 Bright A_CustomMissile("FlierExplosion",random (-20,20),random (-30,30),random (-359,359))
+         FLYC A 1 A_CustomMissile("CrashingFlier2", 0, 0, 75)
+         TRAN A -1
+         Stop
+     }
+}
+
+actor CrashingFlier2
+{
+     SeeSound ""
+     +NOCLIP
+     Speed 3
+     MissileHeight 0
+     States
+     {
+     Spawn:
+         FLYC AAAAAAA 1 Bright A_CustomMissile("FlierExplosion",random (-20,20),random (-30,30),random (-359,359))
+         FLYC A 1 A_CustomMissile("CrashingFlier3", 0, 0, 75)
+         FLYC A 0 A_Explode(32,64)
+         TRAN A -1
+         Stop
+     }
+}
+
+actor CrashingFlier3
+{
+     SeeSound ""
+     +NOCLIP
+     Speed 3
+     MissileHeight 0
+     States
+     {
+     Spawn:
+         FLYC AAAAAAA 1 Bright A_CustomMissile("FlierExplosion",random (-20,20),random (-30,30),random (-359,359))
+         FLYC A 1 A_CustomMissile("CrashingFlier4", 0, 0, 75)
+         TRAN A -1
+         Stop
+     }
+}
+
+actor CrashingFlier4
+{
+     SeeSound ""
+     +NOCLIP
+     Speed 3
+     MissileHeight 0
+     States
+     {
+     Spawn:
+         FLYC AAAAAAA 1 Bright A_CustomMissile("FlierExplosion",random (-20,20),random (-30,30),random (-359,359))
+         FLYC A 1 A_CustomMissile("CrashingFlier5", 0, 0, 75)
+         TRAN A -1
+         Stop
+     }
+}
+
+actor CrashingFlier5
+{
+     SeeSound ""
+     +NOCLIP
+     Speed 3
+     MissileHeight 0
+     States
+     {
+     Spawn:
+         FLYC AAAAAAA 1 Bright A_CustomMissile("FlierExplosion",random (-20,20),random (-30,30),random (-359,359))
+         FLYC A 1 A_CustomMissile("CrashingFlier6", 0, 0, 75)
+         TRAN A -1
+         Stop
+     }
+}
+
+actor CrashingFlier6
+{
+     SeeSound ""
+     +NOCLIP
+     Speed 3
+     RenderStyle ADD
+     MissileHeight 0
+     States
+     {
+     Spawn:
+         FLYC AAAAAA 1 Bright A_CustomMissile("FlierExplosion",random (-20,20),random (-30,30),random (-359,359))
+         BOOM ABCD 4 BRIGHT
+         BOOM ABCD 4 BRIGHT
+         BOOM ABCDABCDABCD 4 BRIGHT
+         NULL A -1
+         Stop
+     }
+}
+
+ACTOR FlierExplosion
+{
+Speed 0
+Renderstyle Add
+Seesound "flier/explosion"
+Scale 0.6
+PROJECTILE
+States
+{
+   Spawn:
+    BOOM A 0 BRIGHT A_Explode(32,64)
+    BOOM ABCDABCDABCDABCDABCDABCD 4 BRIGHT
+    NULL A -1 
+    Stop
+}
+}
+
+ACTOR NewPunchPuff : BulletPuff
+{
+	Alpha 1.0
+	scale 0.6
+	Mass 1
+	States
+	{
+	Spawn:
+	Melee:
+	    GPUF A 2
+	    GPUF BCDE 4
+	    Stop
+	}
+}
+
+ACTOR NewPuff : BulletPuff replaces BulletPuff
+{
+	Alpha 1.0
+	scale 0.6
+	Mass 1
+	States
+	{
+	Spawn:
+	Melee:
+	    PUFF A 2
+	    PUFF A 0 A_Jump(128,2)
+	    PUFF A 2 A_SpawnItem("Puff2")
+	    PUFF BCDE 4
+	    Stop
+	}
+}
+
+ACTOR Puff2
+{
+	PROJECTILE
+	+NOCLIP
+	Mass 1
+	States
+	{
+	Spawn:
+		PUFF F 2
+		PUFF F 2 A_PlaySound("puff/ric")
+		PUFF GHI 4
+		Stop
+	}
+}
+
+ACTOR CumShot
+{
+  Radius 6
+  Height 16
+  Speed 15
+  FastSpeed 20
+  Damage 8
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  States
+  {
+  Spawn:
+    CBAL AB 4 Bright
+    Loop
+  Death:
+    CBAL CDE 6 Bright
+    Stop
+  }
+}
+
+ACTOR PissShot
+{
+  Radius 6
+  Height 16
+  Speed 15
+  FastSpeed 20
+  Damage 8
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  States
+  {
+  Spawn:
+    PBAL AB 4 Bright
+    Loop
+  Death:
+    PBAL CDE 6 Bright
+    Stop
+  }
+}
+
+ACTOR CumBalloon : MorphProjectile
+{
+  Radius 11
+  Height 8
+  Speed 20
+  Damage 20
+  MorphProjectile.PlayerClass "CuckPlayer"
+  MorphProjectile.Duration 1488
+  MorphProjectile.MorphStyle MRF_UNDOBYTOMEOFPOWER
+  +RANDOMIZE
+  +DEHEXPLOSION
+  +ROCKETTRAIL
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  Obituary "%o done came."
+  States
+  {
+  Spawn:
+    BALN A 1 Bright
+    Loop
+  Death:
+    BALN B 8 Bright A_Explode(32,128)
+    BALN C 6 Bright
+    BALN D 4 Bright
+    Stop
+  }
+}
+
+ACTOR CumBalloonExplosive
+{
+  Radius 11
+  Height 8
+  Speed 20
+  Damage 20
+  Projectile
+  +RANDOMIZE
+  +DEHEXPLOSION
+  +ROCKETTRAIL
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  Obituary "%o done came."
+  Translation "168:191=208:223", "0:15=220:223", "32:47=223:223"
+  States
+  {
+  Spawn:
+    BALN A 1 Bright
+    Loop
+  Death:
+    BALN B 8 Bright A_Explode
+    BALN C 6 Bright
+    BALN D 4 Bright
+    Stop
+  }
+}
+
+//brap
+ACTOR BrapBall
+{
+  Radius 8
+  Height 8
+  Speed 25
+  Damage 100
+  Projectile
+  DeathSound "weapons/bfgx"
+  Obituary "Hey, %o! Put the link 'https://tinyurl.com/tonysopranomoment' into your browser for a surprise!"
+  Damagetype Gas
+  States
+  {
+  Spawn:
+    TNT1 A 2 A_SpawnItemEx("BrapCloudSmall_Trail", 0, 0, 0, -2, random(-1,1), random(-1,1), random(-15,15))
+    Loop
+  Death:
+    TNT1 AAAA 1 A_FadeOut
+    TNT1 A 0 A_SpawnItemEx("BrapCloud", 0, 0, 0, 20, 0, random(-2,2), 0,SXF_TRANSFERTRANSLATION)
+    TNT1 A 0 A_SpawnItemEx("BrapCloud", 0, 0, 0, 20, 0, random(-2,2), 90,SXF_TRANSFERTRANSLATION)
+    TNT1 A 0 A_SpawnItemEx("BrapCloud", 0, 0, 0, 20, 0, random(-2,2), 180,SXF_TRANSFERTRANSLATION)
+    TNT1 A 0 A_SpawnItemEx("BrapCloud", 0, 0, 0, 20, 0, random(-2,2), 270,SXF_TRANSFERTRANSLATION)
+    //TNT1 A 0 A_SpawnItemEx("ZyklonCloud", 0, 0, 0, 20, 0, 0, 360)
+    Stop
+  }
+}
+
+ACTOR BrapCloud
+{
+	Damage 2
+	Scale 0.8
+	Height 12
+	Radius 22
+	+BRIGHT
+	Projectile
+	Bouncetype Doom
+    Bouncecount 3
+	RenderStyle Translucent
+	Damagetype Gas
+    Alpha 0.5
+	States
+	{
+	Spawn:
+	GTXL A 0 A_PlaySound("GASSND")
+	GTXL ABABABABAB 1
+	Death:
+	TNT1 A 0 A_SpawnItem("BrapCloud_Explosion")
+	Stop
+	}
+}
+
+ACTOR BrapCloud_Explosion
+{
+	Damage 5
+	Scale 0.8
+	Height 12
+	Radius 22
+	+BRIGHT
+	+FORCERADIUSDMG
+	-RIPPER
+	Projectile
+	Bouncetype Doom
+    Bouncecount 3
+	RenderStyle Translucent
+	Damagetype Gas
+	scale 4
+      Alpha 0.5
+	States
+	{
+	Spawn:
+	TNT1 A 0
+	Goto Death
+	Death:
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("BrapCloud_Effect2",0,0,0,0+random(-5,5),0+random(-5,5),0+random(-5,5))
+	TNT1 A 0 A_Explode(240,120)
+	ZGAS ABCDE 3 
+	TNT1 A 0 A_Explode(240,120)
+	ZGAS FGHIJ 3
+	TNT1 A 0 A_Explode(240,120)
+	ZGAS KLMNO 3
+	TNT1 A 0 A_Explode(240,120)
+	Stop
+	}
+}
+
+ACTOR BrapCloud_Effect2 
+{
+	Scale 0.8
+	Height 12
+	Radius 22
+    +ClientSideOnly
+    +FORCEXYBILLBOARD
+    +NOTELEPORT
+    +NOTELEOTHER
+	Gravity 0
+	+BRIGHT
+    Bouncecount 0
+	RenderStyle Translucent
+    Alpha 0.35
+	Scale 1.25
+	States
+	{
+	Spawn:
+	GTXM EDCBAEDCBAEDCBAEDCBAEDCBA 1
+	Death:
+	GTXM EDCBA 1 A_FadeOut
+	TNT1 A 0 
+	Stop
+	}
+}
+
+ACTOR BrapCloudMedium : BrapCloud
+{
+	Damage 3
+	Height 8
+	Radius 13
+	Bouncecount 2
+	+RIPPER
+	+NOBOSSRIP
+	scale 1
+	States
+	{
+	Spawn:
+	GTXM EDCBAEDCBAEDCBAEDCBAEDCBA 1
+	Death:
+	GTXM EDCBA 1 A_FadeOut
+	TNT1 A 0 
+	Stop
+	}
+}
+
+ACTOR BrapCloudSmall : BrapCloudMedium
+{
+	Damage 2
+	Height 6
+	Radius 8
+	Bouncetype none
+	scale 0.8
+	States
+	{
+	Spawn:
+	GTXS EDCBAEDCBAEDCBAEDCBAEDCBA 1
+	Death:
+	GTXS EDCBA 1 A_FadeOut
+	Stop
+	}
+}
+
+ACTOR BrapCloudSmall_Trail : BrapCloudMedium
+{
+	Damage 2
+	Height 6
+	Radius 8
+	Bouncetype none
+	scale 0.8
+	-RIPPER
+	Damagetype Gas
+	States
+	{
+	Spawn:
+	GTXS EDCBAEDCBAEDCBAEDCBAEDCBA 1 A_Explode(4,18)
+	Death:
+	GTXS EDCBA 1 A_FadeOut
+	Stop
+	}
+}
+
+ACTOR BrapCloudSmall2 : BrapCloudSmall
+{
+	Damage 1
+	Bouncetype Doom
+	scale 0.7
+}

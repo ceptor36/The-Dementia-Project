@@ -1,0 +1,23 @@
+#library "BACKTOME"
+#include "zcommon.acs"
+
+script 588 OPEN 
+{
+	FadeTo (0, 0, 0, 1.0, 1.0);	
+}
+
+script 589 ENTER 
+{
+	FadeTo (0, 0, 0, 0.0, 1.0);	
+}
+
+script 590 DEATH 
+{
+	FadeTo (0, 0, 0, 0.5, 1.0);
+	setfont("BIGFONT");
+	
+	//C H U B B S   I S   D E A D
+	SetMusic("mgs_ambience");
+	AmbientSound("GAMEOVER", 255);
+	HudMessage (s:"C H U B B S\nI S   D E A D"; HUDMSG_TYPEON, 1, CR_WHITE, 0.5, 0.5, 0, 1.0, 0.1); 
+}

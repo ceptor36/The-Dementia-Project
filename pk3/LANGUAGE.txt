@@ -18,8 +18,11 @@ QUITMSG12 = "Rest in pieces, Gregory. Burn in hell. -Smith Weston";
 QUITMSG13 = "I'd leave. This is just more bad stereotypes and levels. What a load.";
 QUITMSG14 = "Hey, Ron! Can we say 'I don't like [insert minority here]' in the game?";
 
-//startup messages
 
+//level names
+
+
+//startup
 STARTUP1 = "==========";
 STARTUP2 = "|DEMENTIA|";
 STARTUP3 = "|BY  [CS]|";

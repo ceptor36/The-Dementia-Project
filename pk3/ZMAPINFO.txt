@@ -4,16 +4,31 @@ clearepisodes
 gameinfo 
 {
 	PlayerClasses = "DementiaGuy"
+	AddEventHandlers = "DementiaEventHandler"
+	statscreen_single = "DementiaStatScreen"
+	statscreen_mapnamefont = "*SmallFont", "White"
+	statscreen_finishedfont = "*SmallFont", "red"
+	statscreen_enteringfont = "*SmallFont", "red"
+	statscreen_contentfont = "*Smallfont", "red"
+	statscreen_authorFont = "*SmallFont", "White"
+	//they're different colors
+	//colored people
 	Intro
 	{
 	Video = "movies/opening.ivf"
-	Sound = "opening"
+	Sound = "OPEN"
 	}
 }
 
 gamedefaults
 {
 	enableskyboxao
+}
+
+adddefaultmap
+{
+	ExitPic = "EXITLEV" 
+	EnterPic = "ENTRLEV"
 }
 
 skill normal
@@ -54,3 +69,16 @@ map F1M2 lookup "Epstein Gutter"
 }
 
 //after terry trap
+map MAP01 lookup "Da Call of Doody"
+{
+	music = "D_MEMES"
+	sky1 = "SKY08"
+	next = map02
+}
+
+map MAP02 lookup "Night Call"
+{
+	music = "D_NCALL"
+	sky1 = "SKY08"
+	next = map03
+}
