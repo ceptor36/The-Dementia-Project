@@ -1,0 +1,13 @@
+Patch File for DeHackEd v3.0
+# Created with WhackEd4 1.2.4 BETA
+# Note: Use the pound sign ('#') to start comment lines.
+
+Doom version = 21
+Patch format = 6
+
+# Yeah because DECORATE has no viable solution we're resorting to 
+# hacking the game directly for this one. Green FN Green FN!!!!!!
+
+Misc 0
+Max Health = 999
+Max Armor = 999

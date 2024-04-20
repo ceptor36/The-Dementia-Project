@@ -39,46 +39,251 @@ skill normal
 	mustconfirm = "new game? (y/n)"
 }
 
-episode HUB01
+episode map00 
 {
-	name = "Base Game"
-	key = "h"
+	name = "Main Game"
+	key = "m"
 }
 
-//fakeout section (like 3 maps, terry trap after)
-map HUB01 lookup "Repossessed Trump Tower, Floor 1"
+map TITLEMAP lookup "DEMENTIA DOT PEE KAY FOUR"
 {
-	music = "D_PTOWER"
+	music = "D_TITLESCREEN"
 	sky1 = "SKY08"
-	next = HUB02
 }
 
-//level names
-map F1M1 lookup "Tutorial"
+map CREDMAP lookup "Game Credits"
 {
-	music = "D_TUTOR"
-	sky1 = "SKY08"
-	//disabled on account they go back to the main maps
+	music = "D_STRTCRED"
+	sky1 = "M3DSKY1"
 }
 
-map F1M2 lookup "Epstein Gutter"
+map MAP00 lookup "DHUSTR_0"
 {
-	music = "D_GTTR"
-	sky1 = "SKY08"
-	//disabled on account they go back to the main maps
+	next = "map01"
+	music = "DMUS_0"
+	sky1 = "M3DSKY1"
 }
 
-//after terry trap
-map MAP01 lookup "Da Call of Doody"
+map MAP01 lookup "DHUSTR_1"
 {
-	music = "D_MEMES"
-	sky1 = "SKY08"
-	next = map02
+	next = "map02"
+	music = "DMUS_1"
+	sky1 = "M3DSKY1"
 }
 
-map MAP02 lookup "Night Call"
+map MAP02 lookup "DHUSTR_2"
 {
-	music = "D_NCALL"
-	sky1 = "SKY08"
-	next = map03
+	next = "map03"
+	music = "DMUS_2"
+	sky1 = "M3DSKY1"
+}
+
+map MAP03 lookup "DHUSTR_3"
+{
+	next = "map04"
+	music = "DMUS_3"
+	sky1 = "SKY1"
+}
+
+map MAP04 lookup "DHUSTR_4"
+{
+	next = "map05"
+	music = "DMUS_4"
+	sky1 = "SKY1"
+}
+
+map MAP05 lookup "DHUSTR_5"
+{
+	next = "map06"
+	music = "DMUS_5"
+	sky1 = "SKY1"
+}
+
+map MAP06 lookup "DHUSTR_6"
+{
+	next = "map07"
+	music = "DMUS_6"
+	sky1 = "SKY1"
+}
+
+map MAP07 lookup "DHUSTR_7"
+{
+	next = "map08"
+	music = "DMUS_7"
+	sky1 = "SKY1"
+}
+
+map MAP08 lookup "DHUSTR_8"
+{
+	next = "map09"
+	music = "DMUS_8"
+	sky1 = "SKY1"
+}
+
+map MAP09 lookup "DHUSTR_9"
+{
+	next = "map10"
+	music = "DMUS_9"
+	sky1 = "SKY1"
+}
+
+map MAP10 lookup "DHUSTR_10"
+{
+	next = "map11"
+	music = "DMUS_10"
+	sky1 = "SKY1"
+}
+
+map MAP11 lookup "DHUSTR_11"
+{
+	next = "map12"
+	music = "DMUS_11"
+	sky1 = "SKY1"
+}
+
+map MAP12 lookup "DHUSTR_12"
+{
+	next = "map13"
+	music = "DMUS_12"
+	sky1 = "SKY1"
+}
+
+map MAP13 lookup "DHUSTR_13"
+{
+	next = "map14"
+	music = "DMUS_13"
+	sky1 = "SKY1"
+}
+
+map MAP14 lookup "DHUSTR_14"
+{
+	next = "map15"
+	music = "DMUS_14"
+	sky1 = "SKY1"
+}
+
+map MAP15 lookup "DHUSTR_15"
+{
+	next = "map16"
+	music = "DMUS_15"
+	sky1 = "SKY1"
+}
+
+map MAP16 lookup "DHUSTR_16"
+{
+	next = "map17"
+	music = "DMUS_16"
+	sky1 = "SKY1"
+}
+
+map MAP17 lookup "DHUSTR_17"
+{
+	next = "map18"
+	music = "DMUS_17"
+	sky1 = "SKY1"
+}
+
+map MAP18 lookup "DHUSTR_18"
+{
+	next = "map19"
+	music = "DMUS_18"
+	sky1 = "SKY1"
+}
+
+map MAP19 lookup "DHUSTR_19"
+{
+	next = "map20"
+	music = "DMUS_19"
+	sky1 = "SKY1"
+}
+
+map MAP20 lookup "DHUSTR_20"
+{
+	next = "map21"
+	music = "DMUS_20"
+	sky1 = "SKY1"
+}
+
+map MAP21 lookup "DHUSTR_21"
+{
+	next = "map22"
+	music = "DMUS_21"
+	sky1 = "SKY1"
+}
+
+map MAP22 lookup "DHUSTR_22"
+{
+	next = "map23"
+	music = "DMUS_22"
+	sky1 = "SKY1"
+}
+
+map MAP23 lookup "DHUSTR_23"
+{
+	next = "map24"
+	music = "DMUS_23"
+	sky1 = "SKY1"
+}
+
+map MAP24 lookup "DHUSTR_24"
+{
+	next = "map25"
+	music = "DMUS_24"
+	sky1 = "SKY1"
+}
+
+map MAP25 lookup "DHUSTR_25"
+{
+	next = "map26"
+	music = "DMUS_25"
+	sky1 = "SKY1"
+}
+
+map MAP26 lookup "DHUSTR_26"
+{
+	next = "map27"
+	music = "DMUS_26"
+	sky1 = "SKY1"
+}
+
+map MAP27 lookup "DHUSTR_4"
+{
+	next = "map28"
+	music = "DMUS_3"
+	sky1 = "SKY1"
+}
+
+map MAP28 lookup "DHUSTR_28"
+{
+	next = "map29"
+	music = "DMUS_28"
+	sky1 = "SKY1"
+}
+
+map MAP29 lookup "DHUSTR_29"
+{
+	next = "map30"
+	music = "DMUS_29"
+	sky1 = "SKY1"
+}
+
+map MAP30 lookup "DHUSTR_30"
+{
+	next = "map31"
+	music = "DMUS_30"
+	sky1 = "SKY1"
+}
+
+map MAP31 lookup "DHUSTR_31"
+{
+	next = "map32"
+	music = "DMUS_31"
+	sky1 = "SKY1"
+}
+
+map MAP32 lookup "DHUSTR_32"
+{
+	next = "CREDMAP" //end of game!
+	music = "DMUS_32"
+	sky1 = "SKY1"
 }

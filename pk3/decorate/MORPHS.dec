@@ -119,12 +119,20 @@ actor Colt45 : Weapon //shitty cuckold weapon
   Select:
     COLT A 1 A_Raise
     Loop
-  Fire:
+  Fire: //rebalanced because people can't fight for shit
     COLT A 0
 	COLF A 1 A_FireBullets(5.2,1,1,1)
 	COLF A 1 A_Light2
 	COLF A 1 A_Light1
-	COLT B 3 A_Light0
+	COLT B 1 A_Light0
+	COLF A 1 A_FireBullets(5.2,1,1,1)
+	COLF A 1 A_Light2
+	COLF A 1 A_Light1
+	COLT B 1 A_Light0
+	COLF A 1 A_FireBullets(5.2,1,1,1)
+	COLF A 1 A_Light2
+	COLF A 1 A_Light1
+	COLT B 2 A_Light0
     COLT CDE 3
     COLT B 3 A_ReFire
     Goto Ready

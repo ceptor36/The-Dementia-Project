@@ -168,3 +168,167 @@ ACTOR FreakyLargeCell : Elixir Replaces CellPack
 		loop
 	}
 }
+
+//keys
+ACTOR DementiaRedKey : RedCard replaces RedCard
+{ 
+	States
+	{
+		Spawn:
+		RKEY ABCDEFGHIJKL 2 Bright
+		Loop
+	}
+}
+
+ACTOR DementiaBlueKey : BlueCard replaces BlueCard
+{ 
+	States
+	{
+		Spawn:
+		BKEY ABCDEFGHIJKL 2 Bright
+		Loop
+	}
+}
+
+ACTOR DementiaYellowKey : YellowCard replaces YellowCard
+{ 
+	States
+	{
+		Spawn:
+		YKEY ABCDEFGHIJKL 2 Bright
+		Loop
+	}
+}
+
+ACTOR DementiaSilverKey : BlueSkull replaces BlueSkull
+{
+	Inventory.PickupMessage "Picked up a silver keycard" 
+	States
+	{
+		Spawn:
+		BSKU ABCDEFGHIJKL 2 Bright
+		Loop
+	}
+}
+
+ACTOR DementiaGreenKey : YellowSkull replaces YellowSkull
+{ 
+	Inventory.PickupMessage "Picked up a green keycard" 
+	States
+	{
+		Spawn:
+		YSKU ABCDEFGHIJKL 2 Bright
+		Loop
+	}
+}
+
+ACTOR DementiaOrangeKey : RedSkull replaces RedSkull
+{ 
+	Inventory.PickupMessage "Picked up an orange keycard" 
+	States
+	{
+		Spawn:
+		RSKU ABCDEFGHIJKL 2 Bright
+		Loop
+	}
+}
+
+//health stuffs
+ACTOR VBCan : Health replaces HealthBonus
+{
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.Amount 1
+  scale 0.5
+  Inventory.MaxAmount 999
+  Inventory.PickupMessage "Picked up a can of VB Beer."
+  States
+  {
+  Spawn:
+    VBHB A -1
+    Stop
+  }
+}
+
+ACTOR VBCanPack : Health replaces Stimpack
+{
+  Inventory.Amount 10
+  scale 0.5
+  Inventory.PickupMessage "Picked up a pack of VB Beers." 
+  Health.LowMessage 25, "Picked up some beers that you REALLY need!" 
+  States
+  {
+  Spawn:
+    VBSP A -1
+    Stop
+  }
+}
+
+ACTOR VBBottlePack : Health replaces Medikit
+{
+  Inventory.Amount 25
+  scale 0.5
+  Inventory.PickupMessage "Picked up a pack of VB Beer Bottles." 
+  Health.LowMessage 25, "Picked up some beers that you REALLY need!" 
+  States
+  {
+  Spawn:
+    VBMK A -1
+    Stop
+  }
+}
+
+//armor stuffs
+ACTOR TooheysCan : BasicArmorBonus replaces ArmorBonus
+{
+  scale 0.5
+  Radius 20
+  Height 16
+  Inventory.PickupMessage "Picked up a can of Tooheys." 
+  Inventory.Icon "TBABA0"
+  Armor.SavePercent 33.335
+  Armor.SaveAmount 1
+  Armor.MaxSaveAmount 999
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  States
+  {
+  Spawn:
+    TBAB A -1
+    Stop
+  }
+}
+
+ACTOR TooheysExtraDry : BasicArmorPickup replaces GreenArmor
+{
+  scale 0.5
+  Radius 20
+  Height 16
+  Inventory.PickupMessage "Picked up a pack of Tooheys Extra Dry Beer Bottles." 
+  Armor.SavePercent 33.335
+  Armor.SaveAmount 100
+  States
+  {
+  Spawn:
+    TBGA A -1
+    Stop
+  }
+}
+
+ACTOR TooheysOld : BasicArmorPickup replaces BlueArmor
+{
+  scale 0.5
+  Radius 20
+  Height 16
+  Inventory.PickupMessage "Picked up a pack of Tooheys Old Beer Bottles!" 
+  Armor.SavePercent 50
+  Armor.SaveAmount 200
+  States
+  {
+  Spawn:
+    TBMA A -1
+    Stop
+  }
+}
+
+//Powerups

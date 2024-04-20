@@ -174,7 +174,7 @@ ACTOR NuPistol : DementiaWeapon replaces Pistol
     PISG A 0 A_GunFlash
     PISG A 0 A_FireBullets(4,4,1,5,"BulletPuff",1)
 	PISG A 0 A_SpawnItemEx("PistolaCasing",12,-20,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
-    PISG BCDBA 2
+    PISG BCDBA 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     Goto Ready+1
   Reload:
 	TNT1 A 0 A_JumpIfInventory("PistolLoad", 12, 2)
@@ -182,12 +182,12 @@ ACTOR NuPistol : DementiaWeapon replaces Pistol
 	TNT1 A 0
 	Goto Ready+1
   ActualReload:
-	PRLT AB 2
+	PRLT AB 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPOU")
-	PISR ABCDEF 1
-	PISR G 4
+	PISR ABCDEF 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	PISR G 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPIN")
-	PISR HIJKLMN 2
+	PISR HIJKLMN 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	Goto ReloadLoop
   ReloadLoop:
     TNT1 A 0 A_TakeInventory("Elixir", 1)
@@ -243,15 +243,15 @@ ACTOR ScatterShot : DementiaWeapon replaces Shotgun
     Loop
   Fire:
 	SSHT A 0 A_JumpIfNoAmmo("Reload")
-    SSHT A 3
+    SSHT A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     SSHT A 0 A_FireBullets(12.6,6.3,10,7,"BulletPuff")
     SSHT A 0 A_PlayWeaponSound("weapons/tacticalshotgun")
     SSHT A 5 A_GunFlash
-	SSHT BCD 4
+	SSHT BCD 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	SSHT A 0 A_PlayWeaponSound("weapons/tacticalpump")
 	SSHT A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
-	SSHT CBA 4 
-    SSHT A 3
+	SSHT CBA 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+    SSHT A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     Goto Ready+1
   Reload:
 	SSHT A 0 A_JumpIfInventory("ScattershotLoad", 12, 2)
@@ -259,10 +259,10 @@ ACTOR ScatterShot : DementiaWeapon replaces Shotgun
 	SSHT A 0
 	Goto Ready+1
   ActualReload:
-	SRLT AB 3
+	SRLT AB 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPOU")
-	SSRL ABCDEF 2
-	SSRL F 6
+	SSRL ABCDEF 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	SSRL F 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPIN")
 	Goto ReloadLoop
   ReloadLoop:
@@ -272,8 +272,8 @@ ACTOR ScatterShot : DementiaWeapon replaces Shotgun
     TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
     Goto ReloadFinish 
   ReloadFinish:
-	SSRL FEDCBA 2
-	SRLT BA 3
+	SSRL FEDCBA 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	SRLT BA 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	goto Ready+1
   Flash:
     SSHF AB 2 Bright A_Light1
@@ -319,23 +319,23 @@ ACTOR ShotScatter : DementiaWeapon replaces SuperShotgun
     Loop
   Fire:
 	TACT A 0 A_JumpIfNoAmmo("Reload")
-    TACT A 3
+    TACT A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     TACT A 0 A_FireBullets(12.6,6.3,20,7,"BulletPuff")
     TACT A 0 A_PlayWeaponSound("weapons/tacticalshotgun")
     TACT A 2 A_GunFlash
-	TACT H 3
-	TACT I 2
-	TACT A 7
-    TACT B 3
+	TACT H 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	TACT I 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	TACT A 7 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+    TACT B 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TACT C 4 A_PlayWeaponSound("weapons/tacticalpump")
     TACT D 5 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
-    TACT C 5
-	TACT E 4
+    TACT C 5 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	TACT E 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TACT F 3 A_PlayWeaponSound("weapons/tacticalpump")
 	TACT G 4 A_SpawnItemEx("ShotgunCasing",12,-12,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
-    TACT F 5
-	TACT E 4
-    TACT A 3
+    TACT F 5 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	TACT E 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+    TACT A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     Goto Ready+1
   Reload:
 	TNT1 A 0 A_JumpIfInventory("ShotscatterLoad", 24, 2)
@@ -343,10 +343,10 @@ ACTOR ShotScatter : DementiaWeapon replaces SuperShotgun
 	TNT1 A 0
 	Goto Ready+1
   ActualReload:
-	TRLT AB 3
+	TRLT AB 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPOU")
-	TCRL ABCDEF 2
-	TCRL F 6
+	TCRL ABCDEF 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	TCRL F 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPIN")
 	Goto ReloadLoop
   ReloadLoop:
@@ -406,17 +406,17 @@ ACTOR ScatScatter : DementiaWeapon replaces Chainsaw
     SSTG A 0 A_FireBullets(12.6,6.3,30,7,"BulletPuff")
     SSTG A 0 A_PlayWeaponSound("weapons/tacticalshotgun")
 	SSTG A 16 A_GunFlash
-	SSTG A 8
+	SSTG A 8 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlayWeaponSound("weapons/tacticalpump")
 	TNT1 A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
-	SSTG B 8
+	SSTG B 8 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlayWeaponSound("weapons/tacticalpump")
 	TNT1 A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
-	SSTG C 8
+	SSTG C 8 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlayWeaponSound("weapons/tacticalpump")
 	TNT1 A 0 A_SpawnItemEx("ShotgunCasing",8,-16,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
-	SSTG D 8
-	SSTG A 6
+	SSTG D 8 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	SSTG A 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     Goto Ready+1
   Reload:
 	TNT1 A 0 A_JumpIfInventory("ScatscatterLoad", 36, 2)
@@ -424,10 +424,10 @@ ACTOR ScatScatter : DementiaWeapon replaces Chainsaw
 	TNT1 A 0
 	Goto Ready+1
   ActualReload:
-	SSTG DCBA 3
+	SSTG DCBA 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPOU")
-	STRL ABCDEF 2
-	STRL F 6
+	STRL ABCDEF 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	STRL F 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPIN")
 	Goto ReloadLoop
   ReloadLoop:
@@ -437,8 +437,8 @@ ACTOR ScatScatter : DementiaWeapon replaces Chainsaw
     TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
     Goto ReloadFinish 
   ReloadFinish:
-	STRL FEDCBA 2
-	SSTG ABCD 3
+	STRL FEDCBA 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	SSTG ABCD 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	goto Ready+1
   Flash:
     SSTF A 2 Bright A_Light1
@@ -486,8 +486,8 @@ ACTOR SexualAssaultRifle : DementiaWeapon replaces Chaingun
      SARH A 0 A_PlayWeaponSound("RIFLFIRE")
      SARH A 0 A_GunFlash
      SARH A 0 A_FireBullets(4,4,1,5,"BulletPuff",1)
-     SARF A 2 Offset(0, 36)
-	 SARF B 2 Offset(0, 40)
+     SARF A 2 Offset(0, 36) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARF B 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	 SARH A 0 A_SpawnItemEx("RifleCasing",12,-20,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
      SARH A 0 A_ReFire
      Goto Ready
@@ -505,13 +505,13 @@ ACTOR SexualAssaultRifle : DementiaWeapon replaces Chaingun
 	 TNT1 A 0
 	 Goto Ready+1
    ActualReload:
-	 SARH A 1
+	 SARH A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	 TNT1 A 0 A_PlaySound("PTCLIPOU")
-	 SARR AB 6
-	 SARR B 2 Offset(0, 40)
-	 SARR B 2 Offset(0, 48)
-	 SARR B 2 Offset(0, 56)
-	 SARR B 6
+	 SARR AB 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARR B 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARR B 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARR B 2 Offset(0, 56) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARR B 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	 TNT1 A 0 A_PlaySound("PTCLIPIN")
 	Goto ReloadLoop
    ReloadLoop:
@@ -521,11 +521,11 @@ ACTOR SexualAssaultRifle : DementiaWeapon replaces Chaingun
      TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
      Goto ReloadFinish 
    ReloadFinish:
-	 SARR C 2 Offset(0, 56)
-	 SARR C 2 Offset(0, 48)
-	 SARR C 2 Offset(0, 40)
-	 SARR CA 6
-	 SARH A 3
+	 SARR C 2 Offset(0, 56) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARR C 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARR C 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARR CA 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 SARH A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	 goto Ready+1
    }
 }
@@ -568,14 +568,14 @@ actor StaatLauncher : DementiaWeapon replaces RocketLauncher
     loop
   Fire:
 	STLA A 0 A_JumpIfNoAmmo("Reload")
-    STLA A 3 
-    STLF A 2
-    STLF A 2
+    STLA A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+    STLF A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+    STLF A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     STLF B 0 A_PlaySound("MISLAUNC")
 	STLF B 4 A_FireCustomMissile("StaatcubeExplosive")
-    STLF C 2 
-    STLA A 2 
-    STLA A 4  
+    STLF C 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+    STLA A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+    STLA A 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     goto Ready+1
   Reload:
 	TNT1 A 0 A_JumpIfInventory("StaatLoad", 1, 2)
@@ -583,10 +583,10 @@ actor StaatLauncher : DementiaWeapon replaces RocketLauncher
 	TNT1 A 0
 	Goto Ready+1
   ActualReload:
-	SLRL A 1
+	SLRL A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPOU")
-	SLRL ABCDEF 2
-	SLRL F 6
+	SLRL ABCDEF 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	SLRL F 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPIN")
 	Goto ReloadLoop
   ReloadLoop:
@@ -596,8 +596,8 @@ actor StaatLauncher : DementiaWeapon replaces RocketLauncher
     TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
     Goto ReloadFinish 
   ReloadFinish:
-	SLRL FEDCBA 2
-	STLA A 3
+	SLRL FEDCBA 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	STLA A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	goto Ready+1
   }
 }
@@ -639,8 +639,8 @@ ACTOR Astrothunder : DementiaWeapon replaces PlasmaRifle
     ASTL A 2 offset(0, 0) BRIGHT A_GunFlash
 	ASTL A 1 offset(0, 40) BRIGHT A_RailAttack(25, 0, 1, "None", "Yellow", RGF_FULLBRIGHT, 10, "LightninPuff",0,0,8192,5)
 	ASTL A 1 offset(0, 48) BRIGHT A_RailAttack(26, 0, 0, "None", "Yellow", RGF_SILENT|RGF_FULLBRIGHT, 10, "LightninPuff",0,0,8192,5)
-	ASTL A 3 offset(0, 36)  
-	ASTL A 1 offset(0, 0)
+	ASTL A 3 offset(0, 36) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL A 1 offset(0, 0) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	ASTL A 0 A_Refire
 	ASTL BCBA 3 A_SpawnItemEx("AreYaSmokinYet",12,-20,32,8,random(-2,2),random(0,4),random(-55,-80),SXF_NOCHECKPOSITION)
     Goto Ready
@@ -655,15 +655,15 @@ ACTOR Astrothunder : DementiaWeapon replaces PlasmaRifle
 	TNT1 A 0
 	Goto Ready+1
   ActualReload:
-	ASTL A 2 Offset(0, 40)
-	ASTL B 2 Offset(0, 44)
-	ASTL C 2 Offset(0, 48)
+	ASTL A 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL B 2 Offset(0, 44) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL C 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPOU")
-	ASTL C 3 Offset(8, 48)
-	ASTL C 3 Offset(4, 48)
-	ASTL C 3 Offset(0, 48)
-	ASTL C 3 Offset(-8, 48)
-	ASTL C 12 Offset(0, 48)
+	ASTL C 3 Offset(8, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL C 3 Offset(4, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL C 3 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL C 3 Offset(-8, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL C 12 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlaySound("PTCLIPIN")
 	Goto ReloadLoop
   ReloadLoop:
@@ -673,10 +673,10 @@ ACTOR Astrothunder : DementiaWeapon replaces PlasmaRifle
     TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
     Goto ReloadFinish 
   ReloadFinish:
-	ASTL C 2 Offset(0, 48)
-	ASTL C 2 Offset(0, 44)
-	ASTL C 2 Offset(0, 40)
-	ASTL CBA 3 Offset(0, 0)
+	ASTL C 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL C 2 Offset(0, 44) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL C 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	ASTL CBA 3 Offset(0, 0) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	goto Ready+1
   Spawn:
     ASTS A -1
@@ -727,29 +727,29 @@ ACTOR Fuck : DementiaWeapon Replaces BFG9000
 	FUKK A 0 A_PlaySound("weapons/fuckyouwarn", 255, 125)
 	FUKK A 0 A_PlayWeaponSound("KNCKL")
 	FUKK A 0 A_Print("Anger builds up inside of you...")
-	PHS1 ABCDEFG 2 
+	PHS1 ABCDEFG 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	FUCK A 0 A_GiveInventory("FuckEverybodyAndEverything", 1)
-	FUKK CBA 3
-	FUKK A 10
+	FUKK CBA 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	FUKK A 10 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
   Goto Ready2
   SecondPhase:
 	FUKK A 0 A_PlaySound("weapons/fuckyouwarn", 255, 255)
 	FUKK A 0 A_PlayWeaponSound("KNCKL")
 	FUKK A 0 A_Print("You need to shout...!")
-	PHS2 ABCDEFG 2 
+	PHS2 ABCDEFG 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	FUCK A 0 A_GiveInventory("FuckEverybodyAndEverything", 1)
-	FUKK CBA 3
-	FUKK A 10
+	FUKK CBA 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	FUKK A 10 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
   Goto Ready2
   FirePrepared:  
 	TNT1 A 0 A_TakeInventory("FuckEverybodyAndEverything")
-	FUKK ABC 3
-	FUCK ABC 3
+	FUKK ABC 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	FUCK ABC 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	TNT1 A 0 A_PlayWeaponSound("weapons/FUCKYOU")
-	FUCK C 20
+	FUCK C 20 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	FUCK DEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDE 3 A_FireCustomMissile("FuckMissile",random(16,-16),1,random(20,-20),random(5,-5),0,random(20,-5))
-	FUCK CBA 3
-	FUKK CBA 3
+	FUCK CBA 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	FUKK CBA 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     Goto Ready
   Reload:
 	TNT1 A 0 A_JumpIfInventory("Rage", 50, 2)
@@ -757,8 +757,8 @@ ACTOR Fuck : DementiaWeapon Replaces BFG9000
 	TNT1 A 0
 	Goto Ready+1
   ActualReload:
-    PHS1 A 2
-	PHS1 BC 2 
+    PHS1 A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	PHS1 BC 2  A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     PHS1 D 0 A_PlayWeaponSound("KNCKL")
 	PHS1 DEFG 2
 	Goto ReloadLoop
@@ -769,10 +769,10 @@ ACTOR Fuck : DementiaWeapon Replaces BFG9000
     TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
     Goto ReloadFinish 
   ReloadFinish:
-    PHS2 A 2
-	PHS2 BC 2 
+    PHS2 A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	PHS2 BC 2  A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
     PHS2 D 0 A_PlayWeaponSound("KNCKL")
-	PHS2 DEFG 2 
+	PHS2 DEFG 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 	goto Ready+1
   Spawn:
     FUHK ABC 3

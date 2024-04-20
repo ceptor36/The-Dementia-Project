@@ -1,6 +1,231 @@
-//members of the group, doomified
-//let's just say the women were off because idk block exams :)
-//and putting the guys in would've already caused controversy already
-//internally their first names are there for their sprite folders
+//vlad and liquid vlad
+ACTOR Vladguy : TardBase 10001
+{
+  DropItem ""
+  Speed 12
+  +FRIENDLY
+  Health 0x7fffffff
+  Obituary "%o somehow got killed by his friend." 
+  States
+  {
+  Spawn:
+    SVLA AB 10 A_Wander
+	SVLA A 0 A_Look
+    Loop
+  See:
+    SVLA AABBCCDD 4 A_Chase
+    Loop
+  Missile:
+    SVLA E 10 A_FaceTarget
+    SVLA F 8 A_SPosAttack
+    SVLA E 8
+    Goto See
+  Pain:
+    SVLA G 3
+    SVLA G 3 A_Pain
+    Goto See
+  Death:
+    SVLA H 10 
+    SVLA I 10 A_Scream
+    SVLA J 10 A_NoBlocking
+    SVLA KLM 10
+    SVLA N -1
+    Stop
+  XDeath:
+    SVLA O 5 
+    SVLA P 5 A_XScream
+	NULL A 0 A_CustomMissile ("HeartGib", 30, 0, 45, 2, 30)
+	NULL A 0 A_CustomMissile ("LiverGib", 30, 0, 135, 2, 30)
+	NULL A 0 A_CustomMissile ("SkullGib", 30, 0, 225, 2, 30)
+	NULL A 0 A_CustomMissile ("Skull2Gib", 30, 0, 315, 2, 30)
+	NULL AA 0 A_CustomMissile ("HandGib", 30, 0, 180, 2, 30)
+	NULL AAAAAA 0 A_CustomMissile ("BloodGib", 30, 0, 60, 2, 30)
+    SVLA Q 5 A_NoBlocking
+    SVLA RSTUV 5
+    SVLA W -1
+    Stop
+  Raise:
+    SVLA K 5
+    SVLA JIH 5
+    Goto See
+  }
+}
 
-//Orlando Hillhouse
+ACTOR LiquidVladguy : TardBase 10002
+{
+  DropItem ""
+  Speed 12
+  Health 6900
+  Obituary "%o somehow got killed by his friend..?" 
+  States
+  {
+  Spawn:
+    LVLA AB 10 A_Wander
+	LVLA A 0 A_Look
+    Loop
+  See:
+    LVLA AABBCCDD 4 A_Chase
+    Loop
+  Missile:
+    LVLA E 10 A_FaceTarget
+    LVLA F 8 
+	{ //don't ask I don't know how too
+		A_SPosAttack;
+		A_SPosAttack;
+		A_SPosAttack;
+		A_SPosAttack;
+	}
+    LVLA E 8
+    Goto See
+  Pain:
+    LVLA G 3
+    LVLA G 3 A_Pain
+    Goto See
+  Death:
+    LVLA H 10 
+    LVLA I 10 A_Scream
+    LVLA J 10 A_NoBlocking
+    LVLA KLM 10
+    LVLA N -1
+    Stop
+  XDeath:
+    LVLA O 5 
+    LVLA P 5 A_XScream
+	NULL A 0 A_CustomMissile ("HeartGib", 30, 0, 45, 2, 30)
+	NULL A 0 A_CustomMissile ("LiverGib", 30, 0, 135, 2, 30)
+	NULL A 0 A_CustomMissile ("SkullGib", 30, 0, 225, 2, 30)
+	NULL A 0 A_CustomMissile ("Skull2Gib", 30, 0, 315, 2, 30)
+	NULL AA 0 A_CustomMissile ("HandGib", 30, 0, 180, 2, 30)
+	NULL AAAAAA 0 A_CustomMissile ("BloodGib", 30, 0, 60, 2, 30)
+    LVLA Q 5 A_NoBlocking
+    LVLA RSTUV 5
+    LVLA W -1
+    Stop
+  Raise:
+    LVLA K 5
+    LVLA JIH 5
+    Goto See
+  }
+}
+
+ACTOR LiquidTerryTrap : LiquidVladguy 10003
+{
+  DropItem ""
+  Speed 12
+  Health 0x7fffffff
+  Obituary "%o somehow got killed by his friend..?" 
+  States
+  {
+  Missile:
+    LVLA E 10 A_FaceTarget
+    LVLA F 8 A_CustomMissile ("BrapBall")
+    LVLA E 8
+    Goto See
+  }
+}
+
+//tpeck
+ACTOR Ceptor : TardBase 10004
+{
+  DropItem ""
+  Speed 12
+  +FRIENDLY
+  Health 0x7fffffff
+  Obituary "%o somehow got killed by his friend." 
+  States
+  {
+  Spawn:
+    CPTR AB 10 A_Wander
+	CPTR A 0 A_Look
+    Loop
+  See:
+    CPTR AABBCCDD 4 A_Chase
+    Loop
+  Missile:
+    CPTR E 10 A_FaceTarget
+    CPTR F 8 A_CPosAttack
+    CPTR E 8 A_CPosRefire
+    Goto Missile+1
+  Pain:
+    CPTR G 3
+    CPTR G 3 A_Pain
+    Goto See
+  Death:
+    CPTR H 10 
+    CPTR I 10 A_Scream
+    CPTR J 10 A_NoBlocking
+    CPTR KLM 10
+    CPTR N -1
+    Stop
+  XDeath:
+    CPTR O 5 
+    CPTR P 5 A_XScream
+	NULL A 0 A_CustomMissile ("HeartGib", 30, 0, 45, 2, 30)
+	NULL A 0 A_CustomMissile ("LiverGib", 30, 0, 135, 2, 30)
+	NULL A 0 A_CustomMissile ("SkullGib", 30, 0, 225, 2, 30)
+	NULL A 0 A_CustomMissile ("Skull2Gib", 30, 0, 315, 2, 30)
+	NULL AA 0 A_CustomMissile ("HandGib", 30, 0, 180, 2, 30)
+	NULL AAAAAA 0 A_CustomMissile ("BloodGib", 30, 0, 60, 2, 30)
+    CPTR Q 5 A_NoBlocking
+    CPTR RSTUV 5
+    CPTR W -1
+    Stop
+  Raise:
+    CPTR K 5
+    CPTR JIH 5
+    Goto See
+  }
+}
+
+//sonen
+ACTOR Sonen : TardBase 10005
+{
+  DropItem ""
+  Speed 12
+  +FRIENDLY
+  Health 0x7fffffff
+  Obituary "%o somehow got killed by his friend." 
+  States
+  {
+  Spawn:
+    SNEN AB 10 A_Wander
+	SNEN A 0 A_Look
+    Loop
+  See:
+    SNEN AABBCCDD 4 A_Chase
+    Loop
+  Missile:
+    SNEN E 10 A_FaceTarget
+    SNEN F 8 A_CPosAttack
+    SNEN E 8 A_CPosRefire
+    Goto Missile+1
+  Pain:
+    SNEN G 3
+    SNEN G 3 A_Pain
+    Goto See
+  Death:
+    SNEN H 10 
+    SNEN I 10 A_Scream
+    SNEN J 10 A_NoBlocking
+    SNEN KLM 10
+    SNEN N -1
+    Stop
+  XDeath:
+    SNEN O 5 
+    SNEN P 5 A_XScream
+	NULL A 0 A_CustomMissile ("HeartGib", 30, 0, 45, 2, 30)
+	NULL A 0 A_CustomMissile ("LiverGib", 30, 0, 135, 2, 30)
+	NULL A 0 A_CustomMissile ("SkullGib", 30, 0, 225, 2, 30)
+	NULL A 0 A_CustomMissile ("Skull2Gib", 30, 0, 315, 2, 30)
+	NULL AA 0 A_CustomMissile ("HandGib", 30, 0, 180, 2, 30)
+	NULL AAAAAA 0 A_CustomMissile ("BloodGib", 30, 0, 60, 2, 30)
+    SNEN Q 5 A_NoBlocking
+    SNEN RSTUV 5
+    SNEN W -1
+    Stop
+  Raise:
+    SNEN K 5
+    SNEN JIH 5
+    Goto See
+  }
+}

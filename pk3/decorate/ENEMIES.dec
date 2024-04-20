@@ -1644,7 +1644,7 @@ actor GangstaGrosse replaces SpiderMastermind
   spawnid 166
   obituary "%o was perforated by a Gangsta Grosse."
   health 3000
-  radius 70
+  radius 35
   scale 0.45
   height 100
   mass 1000
@@ -1691,7 +1691,7 @@ ACTOR BowserFartMeme replaces Cyberdemon
 {
   Health 4000
   Radius 40
-  Height 110
+  Height 90
   Mass 1000
   Speed 16
   PainChance 20
