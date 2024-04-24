@@ -1,3 +1,4 @@
+#library "CODEC.acs"
 #include "zcommon.acs"
 
 str codec[6]=
@@ -10,29 +11,55 @@ str codec[6]=
 };
 
 //under NO circumstances should any of these be played by themselves
-//892 -> 893 -> 894. if you fuck this up im gonna kill you
+//892 -> 893 -> 894. if you fuck this up im gonna kill you. with both hammers and bullets
+
+bool ok_is_this_a_prelevel_cutscene; //checks whether or not a fadetocheck is even needed
 
 script 892 (void) 
 {
-	FadeTo(0,0,0,1.0,1.5);
+	if (ok_is_this_a_prelevel_cutscene = false) {
+		FadeTo(0,0,0,1.0,1.5);
+	}
 	delay(35*2);
-	AmbientSound("CALL",127);
+	AmbientSound("codec/open",127);
 	Delay(115);
 	SetHudSize(0,0,1);
-	SetFont("CODEX1");
+	SetFont("CODECR1");
 	HudMessage(s:"A";HUDMSG_PLAIN,1,CR_WHITE,0.5,0.5,100.0);
 	Delay(1);
-	SetFont("CODEX2");
+	SetFont("CODECR2");
 	HudMessage(s:"A";HUDMSG_PLAIN,1,CR_WHITE,0.5,0.5,100.0);
 	Delay(1);
-	SetFont("CODEX3");
+	SetFont("CODECR3");
 	HudMessage(s:"A";HUDMSG_PLAIN,1,CR_WHITE,0.5,0.5,100.0);
-	delay(35*2);
+}
+
+bool phone_talking;
+
+script 893 (void) //codec calling stuff
+{
+	if (phone_talking = true) {
+		SetFont(codec[random(1,6)]);
+		HudMessage(s:"A";HUDMSG_PLAIN,1,CR_WHITE,0.5,0.5,100.0);
+		delay(10);
+		restart;
+	}
+	if (phone_talking = false) {
+		SetFont("CODEC1");
+		HudMessage(s:"A";HUDMSG_PLAIN,1,CR_WHITE,0.5,0.5,100.0);
+		delay(1);
+		restart;
+	}
+	else {
+		log(s:"DUDE!!! SET THE FUCKING PHONE_TALKING BOOL!!!");
+		delay(35);
+		restart;
+	}
 }
 
 script 894 (void) 
 {
-	AmbientSound("CALLEND",127);
+	AmbientSound("codec/close",127);
 	SetFont("CODECR3");
 	HudMessage(s:"A";HUDMSG_PLAIN,1,CR_WHITE,0.5,0.5,100.0);
 	Delay(1);

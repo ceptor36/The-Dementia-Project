@@ -17,8 +17,8 @@ maps
 		resources
 		{
 		}
-		viewpositiony = 0f;
-		viewpositionx = 111.3476f;
+		viewpositiony = 2365.66f;
+		viewpositionx = -252.5065f;
 		
 		testprecommand
 		{
@@ -42,7 +42,7 @@ maps
 			background = "";
 			backoffsety = 0;
 		}
-		viewscale = 0.8980888f;
+		viewscale = 0.5314133f;
 		
 		reloadresourceprecommand
 		{
@@ -53,31 +53,6 @@ maps
 		defaulttoptexture = "STARTAN2";
 		overridebottomtexture = false;
 		defaultbottomtexture = "STARTAN2";
-		
-		scriptdocuments
-		{
-			
-			document1
-			{
-				filename = "SCRIPTS";
-				hash = 3469170009;
-				resource;
-				tabtype = 0;
-				scripttype = 1;
-				caretposition = 755;
-				firstvisibleline = 3;
-				activetab = true;
-			}
-			
-			document0
-			{
-				filename = "DIALOGUE";
-				hash = 3588187714;
-				resource;
-				tabtype = 0;
-				scripttype = 18;
-			}
-		}
 		defaultfloortexture = "FLOOR0_1";
 		overrideceilheight = false;
 		overridebrightness = false;
@@ -98,6 +73,56 @@ maps
 			autocloseonsuccess = true;
 			exitcodeiserror = true;
 			stderriserror = true;
+		}
+		
+		plugins
+		{
+			
+			threedfloormode
+			{
+				
+				controlsectorarea
+				{
+					usecustomtagrange = false;
+					outerleft = -1024;
+					outerright = 1088;
+					outertop = 1792;
+					outerbottom = 320;
+				}
+			}
+		}
+		
+		fieldtypes
+		{
+			
+			sector
+			{
+				user_managed_3d_floor = 3;
+			}
+		}
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
+			}
+			
+			document1
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 201;
+				activetab = true;
+			}
 		}
 	}
 }

@@ -89,7 +89,7 @@ $random fatso/see { fatspot1 fatspot2 fatspot3 }
 $random fatso/raiseguns { fatpain1 fatpain2 fatfuck1 fatfuck2 fatfuck3 fatfuck4 fatfuck5 fatfuck6 fatfuck7 fatfuck8 fatfuck9 }
 
 codec/open CALL
-codec/open CALLEND
+codec/close CALLEND
 
 //====ACTUALLY USEFUL STUFF, BASICALLY VOICE ACTING====//
 

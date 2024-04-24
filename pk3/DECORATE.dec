@@ -29,6 +29,7 @@ THEY
 #include "decorate/GROUP.dec"
 #include "decorate/GORE.dec"
 #include "decorate/MANQUIN.dec"
+#include "decorate/MERCENARIES.dec"
 
 //playerclass
 

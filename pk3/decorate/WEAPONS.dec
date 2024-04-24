@@ -220,7 +220,7 @@ ACTOR ScatterShot : DementiaWeapon replaces Shotgun
   Weapon.AmmoType1 "ScattershotLoad"
   Weapon.AmmoUse1 1
   Weapon.AmmoGive2 24
-  Inventory.PickupMessage "Picked up the shotscatter. Double barrel pump shotgun fun!"
+  Inventory.PickupMessage "Picked up the shotscatter. Single barrel pump shotgun fun!"
   Weapon.SlotNumber 3
   Obituary "%o was executed by %k's shotscatter."
   Decal "BulletChip"
@@ -654,30 +654,29 @@ ACTOR Astrothunder : DementiaWeapon replaces PlasmaRifle
 	TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ActualReload")
 	TNT1 A 0
 	Goto Ready+1
-  ActualReload:
-	ASTL A 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL B 2 Offset(0, 44) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL C 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	TNT1 A 0 A_PlaySound("PTCLIPOU")
-	ASTL C 3 Offset(8, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL C 3 Offset(4, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL C 3 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL C 3 Offset(-8, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL C 12 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	TNT1 A 0 A_PlaySound("PTCLIPIN")
+   ActualReload:
+	 ASTF A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 TNT1 A 0 A_PlaySound("PTCLIPOU")
+	 RRLD ABC 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 RRLD B 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 RRLD B 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 RRLD B 2 Offset(0, 56) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 RRLD B 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 TNT1 A 0 A_PlaySound("PTCLIPIN")
 	Goto ReloadLoop
-  ReloadLoop:
-    TNT1 A 0 A_TakeInventory("Elixir", 1)
-    TNT1 A 0 A_GiveInventory("AstroLoad", 1)
-    TNT1 A 0 A_JumpIfInventory("AstroLoad", 50, "ReloadFinish")
-    TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
-    Goto ReloadFinish 
-  ReloadFinish:
-	ASTL C 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL C 2 Offset(0, 44) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL C 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	ASTL CBA 3 Offset(0, 0) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	goto Ready+1
+   ReloadLoop:
+     TNT1 A 0 A_TakeInventory("Elixir", 1)
+     TNT1 A 0 A_GiveInventory("AstroLoad", 1)
+     TNT1 A 0 A_JumpIfInventory("AstroLoad", 40, "ReloadFinish")
+     TNT1 A 0 A_JumpIfInventory("Elixir", 1, "ReloadLoop")
+     Goto ReloadFinish 
+   ReloadFinish:
+	 RRLD C 2 Offset(0, 56) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 RRLD C 2 Offset(0, 48) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 RRLD C 2 Offset(0, 40) A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 RRLD CA 6 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 ASTF A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	 goto Ready+1
   Spawn:
     ASTS A -1
     Stop

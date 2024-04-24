@@ -47,8 +47,8 @@ episode map00
 
 map TITLEMAP lookup "DEMENTIA DOT PEE KAY FOUR"
 {
-	music = "D_TITLESCREEN"
-	sky1 = "SKY08"
+	music = "D_TITLESCREEN" //See Vlad? Here's your fucking Ceda Whatchamacallit OST!
+	sky1 = "SKY08"			//LEAVE ME THE FUCK ALONE ABOUT IIIIAAAAAHHHHT!!!
 }
 
 map CREDMAP lookup "Game Credits"
